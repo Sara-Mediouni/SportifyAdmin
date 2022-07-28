@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
-export default function ClubsPage() {
+export default function SallePage() {
   const [selected, setSelected] = React.useState("");
   
   /** Function that will set different values to state variable
@@ -492,7 +492,7 @@ const kebili =  [
 
 
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 class="h3 mb-0 title">Liste des clubs</h1>
+                                <h1 class="h3 mb-0 title">Liste des salles</h1>
 
                             </div>
                            
@@ -581,7 +581,7 @@ const kebili =  [
                 <div class="row">
                     <div class="col-sm-10"></div>
                     <div class="col-sm-2">
-<a href="/addclubs"style={{ marginLeft:'100px',fontSize:'50px',color:'#85D236'}}><AddIcon style={{ fontSize:'50px'}}/></a>
+<a href="/addsalles"style={{ marginLeft:'100px',fontSize:'50px',color:'#85D236'}}><AddIcon style={{ fontSize:'50px'}}/></a>
                     </div>
                 </div>
             </div>
@@ -590,12 +590,10 @@ const kebili =  [
                     <tr>
                         <th>Id</th>
                         <th>Nom</th>
-                        <th>Catégorie</th>
+                       
                         <th>Gouvernement</th>
                         <th>Adresse</th>
-                        <th>Nom de l'entraîneur</th>
-                        <th>Logo</th>
-                        <th>Heure</th>
+                        
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -605,13 +603,10 @@ const kebili =  [
                         <td>Administration</td>
                         <td>(171) 555-2222</td>
                         <td>(171) 555-2222</td>
-                        <td>(171) 555-2222</td>
-                        <td>(171) 555-2222</td>
-                        <td>(171) 555-2222</td>
-                        <td>(171) 555-2222</td>
+                        
                         <td>
                            
-                            <a href="/modifclubs"class="edit" title="Edit" data-toggle="tooltip"><EditIcon/></a>
+                            <a href="/modifsalles"class="edit" title="Edit" data-toggle="tooltip"><EditIcon/></a>
                             <a class="delete" title="Delete" data-toggle="tooltip"><DeleteIcon/></a>
                         </td>
                     </tr>

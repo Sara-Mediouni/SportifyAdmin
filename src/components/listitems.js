@@ -21,7 +21,7 @@ import './Sidenav.css'
 export const mainListItems = (
   <div class='body'>
     <ListItem style={{marginBottom:'30px'}}button onClick={() => {
-      window.location.href="/home"
+      window.location.href="/"
     }}>
       <ListItemIcon style={{color:"#fff"}}>
         <DashboardIcon />
@@ -29,7 +29,7 @@ export const mainListItems = (
       <ListItemText style={{color:"#fff"}}primary="Dashboard" />
     </ListItem>
     <ListItem style={{marginBottom:'30px'}} button onClick={() => {
-      window.location.href="/vehicules"
+      window.location.href="/clubs"
     }}>
       <ListItemIcon style={{color:"#fff",fontSize:"20px"}}>
         <SiClubhouse />
@@ -37,7 +37,7 @@ export const mainListItems = (
       <ListItemText style={{color:"#fff"}} primary="Clubs" />
     </ListItem>
     <ListItem style={{marginBottom:'30px'}} button onClick={() => {
-      window.location.href="/Customer"
+      window.location.href="/salles"
     }}>
       <ListItemIcon style={{color:"#fff"}}>
         <RoomIcon />
@@ -45,7 +45,7 @@ export const mainListItems = (
       <ListItemText style={{color:"#fff"}}primary="Salles" />
     </ListItem>
     <ListItem style={{marginBottom:'30px'}} button onClick={() => {
-      window.location.href="/vehicules/intervention/list"
+      window.location.href="/users"
     }}>
       <ListItemIcon style={{color:"#fff"}}>
       <PeopleIcon />
@@ -53,7 +53,7 @@ export const mainListItems = (
       <ListItemText style={{color:"#fff"}} primary="Utilisateurs" />
     </ListItem>
     <ListItem style={{marginBottom:'30px'}} button onClick={() => {
-      window.location.href="/vehicules/parking/list"
+      window.location.href="/news"
     }}>
       <ListItemIcon style={{color:"#fff",fontSize:"20px"}}>
         <BiNews />
@@ -62,7 +62,7 @@ export const mainListItems = (
       
     </ListItem>
     <ListItem style={{marginBottom:'30px'}} button onClick={() => {
-      window.location.href="/vehicules/parking/list"
+      window.location.href="/events"
     }}>
       <ListItemIcon style={{color:"#fff",fontSize:"20px"}}>
         <MdEmojiEvents />
