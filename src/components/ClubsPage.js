@@ -591,7 +591,7 @@ const kebili =  [
                         <th>Id</th>
                         <th>Nom</th>
                         <th>Catégorie</th>
-                        <th>Gouvernement</th>
+                        <th>Gouvernement </th>
                         <th>Adresse</th>
                         <th>Nom de l'entraîneur</th>
                         <th>Logo</th>

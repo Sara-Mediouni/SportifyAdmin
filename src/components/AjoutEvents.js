@@ -37,9 +37,9 @@ export default function AjoutEvents() {
 </div>
  
  
-  <button type="submit" class="btn-2 d-flex justify-content-center">Sauvegarder</button>
+  <button type="submit" class="btn-2 d-flex justify-content-center text-center">Sauvegarder</button>
 </form>
-                               </div>
+ </div>
     
                      
           
