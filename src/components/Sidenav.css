@@ -90,15 +90,27 @@
       margin: 0 5px;
       min-width: 24px;
   }    
-  table.table td a.add {
-      color: #27C46B;
+ .add {
+      color: #85D236;
+      float:right;
+      position:relative;
+      margin-top: 50px;
+      left:880px
   }
-  table.table td a.edit {
+  .edit {
       color: #FFC107;
+
   }
-  table.table td a.delete {
+  .delete {
       color: #E34724;
   }
+  .edit:hover {
+    color: #FFC107;
+    
+}
+.delete:hover {
+    color: #E34724;
+}
   table.table td i {
       font-size: 19px;
   }

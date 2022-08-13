@@ -1,6 +1,13 @@
 import React from 'react'
 import SideNav from './Sidenav'
 import './Sidenav.css';
+import {
+  
+  Link
+} from "react-router-dom";
+import Box from '@mui/material/Box';
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -16,7 +23,84 @@ export default function ClubsPage() {
   const changeSelectOptionHandler = (event) => {
     setSelected(event.target.value);
   };
-  
+
+const columns: GridColDef[] = [
+  { field: 'id', headerName: 'ID', width: 60 },
+  {
+    field: 'nom',
+    headerName: 'Nom',
+    width: 120,
+    editable: true,
+  },
+  {
+    field: 'activité',
+    headerName: 'Activité',
+    width: 120,
+    editable: true,
+  },
+  {
+    field: 'emplacement',
+    headerName: 'Emplacement',
+    width: 120,
+    editable: true,
+  },
+  {
+    field: 'région',
+    headerName: 'Région',
+    sortable: false,
+    width: 120,
+   
+  },
+  {
+    field: 'gouvernement',
+    headerName: 'Gouvernement',
+    sortable: false,
+    width: 120,
+   
+  },
+  {
+    field: 'logo',
+    headerName: 'Logo',
+    sortable: false,
+    width: 120,
+   
+  },
+  {
+    field: 'temps',
+    headerName: 'Temps',
+    sortable: false,
+    width: 130,
+   
+  },
+  {
+    field: 'action',
+    headerName: 'Action',
+    
+    width: 120,
+    renderCell:(params)=>{
+      return(
+        <>
+       
+        <a class="edit"><EditIcon style={{Color:'#444'}}/></a>
+       
+        <a class="delete"><DeleteIcon style={{Color:"#555"}}/> </a>
+        </>
+      )
+    }
+  }
+];
+
+const rows = [
+  { id: 1, lastName: 'Snow', firstName: 'Jon', email: 'k@gmail.com' },
+  { id: 2, lastName: 'Lannister', firstName: 'Cersei', email:'k@gmail.com' },
+  { id: 3, lastName: 'Lannister', firstName: 'Jaime', email: 'k@gmail.com' },
+  { id: 4, lastName: 'Stark', firstName: 'Arya', email: 'k@gmail.com' },
+  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', email:'k@gmail.com' },
+  { id: 6, lastName: 'Melisandre', firstName: null, email: 'k@gmail.com' },
+  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', email: 'k@gmail.com' },
+  { id: 8, lastName: 'Frances', firstName: 'Rossini', email: 'k@gmail.com' },
+  { id: 9, lastName: 'Roxie', firstName: 'Harvey', email: 'k@gmail.com' },
+];
   /** Different arrays for different dropdowns */
   const ariana = [
    "Ariana Ville",
@@ -574,52 +658,26 @@ const kebili =  [
           </div>
         </div>
       </form>
-    <div class="table-responsive">
-      
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-10"></div>
+      <div class="row">
+                   
                     <div class="col-sm-2">
-<a href="/addclubs"style={{ marginLeft:'100px',fontSize:'50px',color:'#85D236'}}><AddIcon style={{ fontSize:'50px'}}/></a>
-                    </div>
+<a class="add" href="/addsalles"><AddIcon style={{ fontSize:'50px'}}/></a>
+                    
                 </div>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nom</th>
-                        <th>Catégorie</th>
-                        <th>Gouvernement </th>
-                        <th>Adresse</th>
-                        <th>Nom de l'entraîneur</th>
-                        <th>Logo</th>
-                        <th>Heure</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>Administration</td>
-                        <td>(171) 555-2222</td>
-                        <td>(171) 555-2222</td>
-                        <td>(171) 555-2222</td>
-                        <td>(171) 555-2222</td>
-                        <td>(171) 555-2222</td>
-                        <td>(171) 555-2222</td>
-                        <td>
-                           
-                            <a href="/modifclubs"class="edit" title="Edit" data-toggle="tooltip"><EditIcon/></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><DeleteIcon/></a>
-                        </td>
-                    </tr>
-                      
-                </tbody>
-            </table>
-        </div>
-    </div>
+                </div>
+            
+      <Box sx={{ width: '90%',height:'600px',paddingTop:'5rem',paddingRight:'5rem'}}>
+     
+     <DataGrid
+       rows={rows}
+       columns={columns}
+       pageSize={5}
+       rowsPerPageOptions={[5]}
+       checkboxSelection
+       disableSelectionOnClick
+       experimentalFeatures={{ newEditingApi: true }}
+     />
+     </Box>
 </div>     
 
 
