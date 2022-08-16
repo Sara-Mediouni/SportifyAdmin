@@ -1,13 +1,11 @@
-import SideNav from "./Sidenav";
-
-   
-    import React from 'react'
+import SideNav from "../Sidenav/Sidenav";
+import React from 'react'
     
-    export default function Modifsalle() {
+    export default function Modifclub() {
       return (
         <div id="wrapper">
 
-                 
+                
     
                     <div id="content-wrapper" class="d-flex flex-column">
      
@@ -19,14 +17,14 @@ import SideNav from "./Sidenav";
     
     
                                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                    <h1 class="h3 mb-0 title">Modifcation d'une salle</h1>
+                                    <h1 class="h3 mb-0 title">Modification du club</h1>
     
                                 </div>
                                <div class="">
                                <form style={{marginLeft:'10%',alignItems:'left'}}>
   
   <div class="form-group ">
-    <label for="club">Nom</label>
+    <label for="club">Nom du club</label>
     <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
  
   </div>
@@ -35,7 +33,11 @@ import SideNav from "./Sidenav";
     <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
  
   </div>
+  <div class="form-group ">
+    <label for="club">Nom de l'entraîneur</label>
+    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
  
+  </div>
   <div class="form-group ">
   <label for="club">Région</label>
   <div class="input-select">
@@ -80,7 +82,12 @@ import SideNav from "./Sidenav";
                   
                 </div>
   </div>
- 
+  <div class="form-group ">
+
+    <label for="exampleFormControlFile1">Logo</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
+  
+  </div>
  
   <button type="submit" class="btn d-flex justify-content-center">Sauvegarder</button>
 </form>

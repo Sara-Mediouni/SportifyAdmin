@@ -8,17 +8,17 @@ import {
   Link
 } from "react-router-dom";
 
-import ClubsPage from './components/ClubsPage';
-import Addclub from './components/Addclub';
-import Modifclub from './components/Modifclub';
-import SideNav from './components/Sidenav';
-import UsersPage from './components/users';
-import Dashboard from './components/Dashbord';
-import AddSalle from './components/AddSalle';
-import SallePage from './components/SallesPage';
-import Modifsalle from './components/Modifsalles';
-import Ajoutnews from './components/Ajoutnews';
-import AjoutEvents from './components/AjoutEvents';
+import ClubsPage from './components/Lists/ClubsPage';
+import Addclub from './components/Addpages/Addclub';
+import Modifclub from './components/UpdatePages/Modifclub';
+import SideNav from './components/Sidenav/Sidenav';
+import UsersPage from './components/users/users';
+import Dashboard from './components/Dashboard/Dashbord';
+import AddSalle from './components/Addpages/AddSalle';
+import SallePage from './components/Lists/SallesPage';
+import Modifsalle from './components/UpdatePages/Modifsalles';
+import Ajoutnews from './components/Addpages/Ajoutnews';
+import AjoutEvents from './components/Addpages/AjoutEvents';
 
 function App() {
   return (

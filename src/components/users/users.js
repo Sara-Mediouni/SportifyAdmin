@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import './Sidenav.css'
+import '../Sidenav/Sidenav.css'
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 90 },
   {

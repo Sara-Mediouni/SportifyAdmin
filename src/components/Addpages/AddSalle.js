@@ -1,9 +1,7 @@
-import SideNav from "./Sidenav";
-
-   
-    import React from 'react'
+import SideNav from "../Sidenav/Sidenav";
+import React from 'react'
     
-    export default function Addclub() {
+    export default function AddSalle() {
       const [selected, setSelected] = React.useState("");
   
       /** Function that will set different values to state variable
@@ -487,14 +485,14 @@ const kebili =  [
     
     
                                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                    <h1 class="h3 mb-0 title">Ajout d'un club</h1>
+                                    <h1 class="h3 mb-0 title">Ajout d'une salle</h1>
     
                                 </div>
                                <div class="">
                                <form style={{marginLeft:'10%',alignItems:'left'}}>
   
   <div class="form-group ">
-    <label for="club">Nom du club</label>
+    <label for="club">Nom</label>
     <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
  
   </div>
@@ -503,11 +501,7 @@ const kebili =  [
     <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
  
   </div>
-  <div class="form-group ">
-    <label for="club">Nom de l'entraîneur</label>
-    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
  
-  </div>
   <div class="form-group ">
   <label for="club">Gouvernement</label>
   <div class="input-select">
@@ -545,7 +539,7 @@ const kebili =  [
   <div class="input-select">
                   <select data-trigger="" class="form-select"name="choices-single-defaul"
                  >
-                        {
+                     {
               /** This is where we have used our options variable */
               options
             }
@@ -553,12 +547,7 @@ const kebili =  [
                   
                 </div>
   </div>
-  <div class="form-group ">
-
-    <label for="exampleFormControlFile1">Logo</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
-  
-  </div>
+ 
  
   <button type="submit" class="btn d-flex justify-content-center">Sauvegarder</button>
 </form>
