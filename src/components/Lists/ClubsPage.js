@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SideNav from '../Sidenav/Sidenav'
 import '../Sidenav/Sidenav.css'
 import {
@@ -14,9 +14,11 @@ import AddIcon from '@mui/icons-material/Add';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
+import axios from 'axios';
+import { getRowIdFromRowModel } from '@mui/x-data-grid/hooks/features/rows/gridRowsUtils';
 export default function ClubsPage() {
   const [selected, setSelected] = React.useState("");
-  
+  const [clubs, setClubs] = React.useState([{clubs:""}]);
   /** Function that will set different values to state variable
    * based on which dropdown is selected
    */
@@ -70,6 +72,15 @@ const columns: GridColDef[] = [
     headerName: 'Temps',
     sortable: false,
     width: 130,
+    renderCell: (params) => (
+      <ul className="flex">
+        {params.value.map((temps, index) => (
+          <li key={index}>{temps}</li>
+        ))}
+      </ul>
+    ),
+    type: 'string',
+  
    
   },
   {
@@ -90,17 +101,18 @@ const columns: GridColDef[] = [
   }
 ];
 
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', email: 'k@gmail.com' },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', email:'k@gmail.com' },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', email: 'k@gmail.com' },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', email: 'k@gmail.com' },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', email:'k@gmail.com' },
-  { id: 6, lastName: 'Melisandre', firstName: null, email: 'k@gmail.com' },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', email: 'k@gmail.com' },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', email: 'k@gmail.com' },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', email: 'k@gmail.com' },
-];
+const rows = clubs.map((c) => {
+  return {
+    id:Math.random(),
+    nom:c.Nomclub,
+    gouvernement: c.Gouvernement,
+    emplacement:c.Emplacement,
+    temps:c.Temps,
+    région:c.Région,
+    logo:c.Logo,
+    activité:c.Activité
+    
+  };});
   /** Different arrays for different dropdowns */
   const ariana = [
    "Ariana Ville",
@@ -560,6 +572,17 @@ const kebili =  [
   if (type) {
     options = type.map((el) => <option key={el}>{el}</option>);
   }
+  const show=()=>{
+     axios.get("http://localhost:3000/api/club/")
+      .then(response => {
+        const clubs = response.data;
+        setClubs(clubs)
+      })
+ }
+ useEffect(() => {
+  show();
+  console.log(clubs[0].Temps[0].Horaire)
+}, []);
   return (
     
     <div id="wrapper">
@@ -661,13 +684,13 @@ const kebili =  [
       <div class="row">
                    
                     <div class="col-sm-2">
-<a class="add" href="/addsalles"><AddIcon style={{ fontSize:'50px'}}/></a>
+<a class="add" href="/addclubs"><AddIcon style={{ fontSize:'50px'}}/></a>
                     
                 </div>
                 </div>
             
       <Box sx={{ width: '90%',height:'600px',paddingTop:'5rem',paddingRight:'5rem'}}>
-     
+      
      <DataGrid
        rows={rows}
        columns={columns}

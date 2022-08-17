@@ -1,14 +1,26 @@
 import SideNav from "../Sidenav/Sidenav";
 import React from 'react'
-    
+import axios from "axios";
+import AddIcon from '@mui/icons-material/Add';
     export default function Addclub() {
       const [selected, setSelected] = React.useState("");
-  
+      const [NomClub, setNomClub] = React.useState("");
+      const [ActiviteList, setActiviteList] = React.useState([{Activite:""}]);
+      const [Logo, setLogo] = React.useState("");
+      const [Region, setRegion] = React.useState("");
+      const [Gouvernement, setGouvernement] = React.useState("");
+      const [Adresse, setAdresse] = React.useState("");
+      const [NomEntraineur, setNomEntraineur] = React.useState("");
       /** Function that will set different values to state variable
        * based on which dropdown is selected
        */
       const changeSelectOptionHandler = (event) => {
         setSelected(event.target.value);
+        setGouvernement(event.target.value)
+      };
+      const changeSelectOptionHandlerregion = (event) => {
+       
+        setRegion(event.target.value)
       };
       
       /** Different arrays for different dropdowns */
@@ -470,6 +482,40 @@ const kebili =  [
       if (type) {
         options = type.map((el) => <option key={el}>{el}</option>);
       }
+
+const handleActivitesAdd=()=>
+{
+  setActiviteList([...ActiviteList,{Activite:""}])
+}
+const handleActivitesRemove=(index)=>
+{
+ const List=[...ActiviteList];
+ List.splice(index,1);
+ setActiviteList(List)
+}
+      const create=()=>{
+        
+        var formData = new FormData();
+
+ formData.append('Logo',Logo);
+formData.append('Nom_club',NomClub);
+formData.append('Nom_entren',NomEntraineur);
+formData.append( 'Gouvernement',Gouvernement);
+formData.append('Emplacement',Adresse);
+ formData.append( 'Région',Region);
+       
+        axios.post('http://localhost:3000/api/club/store',
+        { headers: {
+          "Content-Type": "multipart/form-data",
+          'Accept':'*/*'
+      }},
+       formData
+      ) 
+      .then(function (response)
+       {console.log(response.status)
+        console.log(response.data.data);
+        console.log(response.statusText);
+      })}
       return (
         <div id="wrapper">
 
@@ -489,23 +535,60 @@ const kebili =  [
     
                                 </div>
                                <div class="">
-                               <form style={{marginLeft:'10%',alignItems:'left'}}>
+                               <form 
+                               onSubmit={(e) => {e.preventDefault();
+                              create()}
+                              } style={{marginLeft:'10%',alignItems:'left'}}>
   
   <div class="form-group ">
     <label for="club">Nom du club</label>
-    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
+    <input 
+    onChange={(e)=>setNomClub(e.target.value)}
+     type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
  
   </div>
   <div class="form-group ">
     <label for="club">Adresse</label>
-    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
+    <input 
+    onChange={(e)=>setAdresse(e.target.value)}
+     type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
  
   </div>
   <div class="form-group ">
     <label for="club">Nom de l'entraîneur</label>
-    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
+    <input
+    onChange={(e)=>setNomEntraineur(e.target.value)}
+    type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
  
   </div>
+  <div class="form-group">
+
+<label for="activites">Activité(s)</label>
+{ActiviteList.map((SingleActivite,index)=>(
+<div key={index}>
+  <div className="input-group" style={
+    {
+      
+      marginBottom:'20px'
+    }
+  }>
+<input type="text" style={{height:'50px'}} onChange={(e)=>{setLogo(e.target.files[0]);
+console.log(Logo)}} class="input-control form-control" id="activites"/>
+{ActiviteList.length>1&&(<button onClick={()=>handleActivitesRemove(index)}className="deletebutton input-group-append">Remove</button>)}
+
+</div>
+{ActiviteList.length-1===index && ActiviteList.length<4 && 
+<div className="col-sm-2">
+  <button class="addbutton">
+    <AddIcon onClick={handleActivitesAdd}style={{fontSize:'20px'}}/>Ajouter</button>
+    </div>
+    }
+</div>
+))}
+
+
+
+</div> 
   <div class="form-group ">
   <label for="club">Gouvernement</label>
   <div class="input-select">
@@ -541,7 +624,7 @@ const kebili =  [
   <div class="form-group">
   <label for="club">Région</label>
   <div class="input-select">
-                  <select data-trigger="" class="form-select"name="choices-single-defaul"
+                  <select onChange={changeSelectOptionHandlerregion} data-trigger="" class="form-select"name="choices-single-defaul"
                  >
                         {
               /** This is where we have used our options variable */
@@ -551,12 +634,17 @@ const kebili =  [
                   
                 </div>
   </div>
+ 
+ 
   <div class="form-group ">
 
     <label for="exampleFormControlFile1">Logo</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
+    <input type="file" onChange={(e)=>{setLogo(e.target.files[0]);
+    console.log(Logo)}} class="form-control-file" id="exampleFormControlFile1"/>
   
   </div>
+   
+
  
   <button type="submit" class="btn d-flex justify-content-center">Sauvegarder</button>
 </form>

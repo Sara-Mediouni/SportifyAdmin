@@ -89,13 +89,38 @@
       display: inline-block;
       margin: 0 5px;
       min-width: 24px;
-  }    
+  }   
+  .addbutton {
+    color: #ffffff;
+    float:right;
+    position:relative;
+    margin-top: 50px;
+    left:880px;
+    cursor:pointer;
+    background-color: #85D236;
+    border-color: transparent;
+    border-radius: 20px;
+    width:150px;
+    height:40px
+} 
+.deletebutton {
+  color: #ffffff;
+ 
+
+  width:20%;
+  height:50px;
+  cursor:pointer;
+  background-color: #c13326;
+  border-color: transparent;
+  border-radius: 20px;
+} 
  .add {
       color: #85D236;
       float:right;
       position:relative;
       margin-top: 50px;
-      left:880px
+      left:880px;
+      cursor:pointer
   }
   .edit {
       color: #FFC107;
@@ -120,6 +145,9 @@
       position: relative;
       top: 3px;
   }    
+  .add:hover{
+    color: #85D236;
+  }
   table.table .form-control {
       height: 32px;
       line-height: 32px;
