@@ -1,6 +1,7 @@
 import SideNav from "../Sidenav/Sidenav";
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from "axios";
+
 import AddIcon from '@mui/icons-material/Add';
     export default function Addclub() {
       const [selected, setSelected] = React.useState("");
@@ -492,30 +493,32 @@ const handleActivitesRemove=(index)=>
  const List=[...ActiviteList];
  List.splice(index,1);
  setActiviteList(List)
+ console.log(ActiviteList)
 }
       const create=()=>{
+        var formdata = new FormData();
+        formdata.append("Logo",Logo);
+        formdata.append("Nom_club", NomClub);
+        formdata.append("Activités",ActiviteList);
+        formdata.append("Gouvernement",Gouvernement );
+        formdata.append("Région",Region );
+        formdata.append("Emplacement",Adresse );
+        formdata.append("Nom_entren",NomEntraineur );
+        var requestOptions = {
+          method: 'POST',
+          body: formdata,
+          redirect: 'follow'
+        };
         
-        var formData = new FormData();
+        fetch("http://localhost:3000/api/club/store", requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+}
+useEffect(() => {
+  console.log(ActiviteList)
 
- formData.append('Logo',Logo);
-formData.append('Nom_club',NomClub);
-formData.append('Nom_entren',NomEntraineur);
-formData.append( 'Gouvernement',Gouvernement);
-formData.append('Emplacement',Adresse);
- formData.append( 'Région',Region);
-       
-        axios.post('http://localhost:3000/api/club/store',
-        { headers: {
-          "Content-Type": "multipart/form-data",
-          'Accept':'*/*'
-      }},
-       formData
-      ) 
-      .then(function (response)
-       {console.log(response.status)
-        console.log(response.data.data);
-        console.log(response.statusText);
-      })}
+}, []);
       return (
         <div id="wrapper">
 
@@ -535,7 +538,7 @@ formData.append('Emplacement',Adresse);
     
                                 </div>
                                <div class="">
-                               <form 
+                               <form enctype="multipart/form-data"
                                onSubmit={(e) => {e.preventDefault();
                               create()}
                               } style={{marginLeft:'10%',alignItems:'left'}}>
@@ -572,8 +575,8 @@ formData.append('Emplacement',Adresse);
       marginBottom:'20px'
     }
   }>
-<input type="text" style={{height:'50px'}} onChange={(e)=>{setLogo(e.target.files[0]);
-console.log(Logo)}} class="input-control form-control" id="activites"/>
+<input type="text" style={{height:'50px'}} onChange={(e)=>{
+console.log(Logo.name)}} class="input-control form-control" id="activites"/>
 {ActiviteList.length>1&&(<button onClick={()=>handleActivitesRemove(index)}className="deletebutton input-group-append">Remove</button>)}
 
 </div>
@@ -640,7 +643,7 @@ console.log(Logo)}} class="input-control form-control" id="activites"/>
 
     <label for="exampleFormControlFile1">Logo</label>
     <input type="file" onChange={(e)=>{setLogo(e.target.files[0]);
-    console.log(Logo)}} class="form-control-file" id="exampleFormControlFile1"/>
+    console.log(Logo.name)}} class="form-control-file" id="exampleFormControlFile1"/>
   
   </div>
    

@@ -20,6 +20,7 @@ import Modifsalle from './components/UpdatePages/Modifsalles';
 import Ajoutnews from './components/Addpages/Ajoutnews';
 import AjoutEvents from './components/Addpages/AjoutEvents';
 
+
 function App() {
   return (
     <BrowserRouter >
