@@ -80,7 +80,15 @@ const columns: GridColDef[] = [
     field: 'temps',
     headerName: 'Temps',
     width: 170,
-    
+    type:'string',
+    renderCell:(params)=>{params.row.temps.map((t)=>
+      {return(
+        t.Jours.toString()+" "+t.Horaire.toString()+"\r"
+       
+       
+        
+      )
+    })}
    
   },
   {
