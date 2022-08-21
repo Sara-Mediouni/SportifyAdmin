@@ -20,6 +20,7 @@ import { Avatar } from '@mui/material';
 export default function ClubsPage() {
   const [selected, setSelected] = React.useState("");
   const [clubs, setClubs] = React.useState([{id: 0}]);
+  
   /** Function that will set different values to state variable
    * based on which dropdown is selected
    */
@@ -81,14 +82,7 @@ const columns: GridColDef[] = [
     headerName: 'Temps',
     width: 170,
     type:'string',
-    renderCell:(params)=>{params.row.temps.map((t)=>
-      {return(
-        t.Jours.toString()+" "+t.Horaire.toString()+"\r"
-       
-       
-        
-      )
-    })}
+   
    
   },
   {
@@ -100,7 +94,7 @@ const columns: GridColDef[] = [
       return(
         <>
        
-        <a className="edit"><EditIcon style={{Color:'#444'}}/></a>
+        <a href={"/modifclub/"+`${params.row.id}`} className="edit"><EditIcon style={{Color:'#444'}}/></a>
        
         <a className="delete"><DeleteIcon style={{Color:"#555"}}/> </a>
         </>
@@ -112,7 +106,7 @@ const columns: GridColDef[] = [
 const rows = clubs.map((c) => {
   return {
    
-   id:c.id,
+    id:c.id,
     nom:c.Nomclub,
     gouvernement: c.Gouvernement,
     emplacement:c.Emplacement,

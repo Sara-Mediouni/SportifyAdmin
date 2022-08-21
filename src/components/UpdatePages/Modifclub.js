@@ -1,7 +1,40 @@
 import SideNav from "../Sidenav/Sidenav";
 import React from 'react'
+import { useSearchParams } from "react-router-dom";
     
-    export default function Modifclub() {
+    export default function Modifclub(props) {
+      const [searchParams, setSearchParams] = useSearchParams();
+      const [selected, setSelected] = React.useState("");
+      const [NomClub, setNomClub] = React.useState("");
+      const [ActiviteList, setActiviteList] = React.useState([{Activite:""}]);
+      const [Logo, setLogo] = React.useState("");
+      const [Region, setRegion] = React.useState("");
+      const [Gouvernement, setGouvernement] = React.useState("");
+      const [Adresse, setAdresse] = React.useState("");
+      const [NomEntraineur, setNomEntraineur] = React.useState("");
+
+      const create=()=>{
+        var formdata = new FormData();
+        formdata.append("Logo",Logo);
+        formdata.append("Nom_club", NomClub);
+        formdata.append("Activités",ActiviteList);
+        formdata.append("Gouvernement",Gouvernement );
+        formdata.append("Région",Region );
+        formdata.append("Emplacement",Adresse );
+        formdata.append("Nom_entren",NomEntraineur );
+        
+        var requestOptions = {
+          method: 'PUT',
+          body: formdata,
+          redirect: 'follow'
+        };
+        
+        fetch("http://localhost:3000/api/club/update/"+props.id, requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+}
+
       return (
         <div id="wrapper">
 

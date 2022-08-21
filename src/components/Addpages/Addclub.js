@@ -8,7 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
       const [NomClub, setNomClub] = React.useState("");
       const [ActiviteList, setActiviteList] = React.useState([{Activite:""}]);
       const [Logo, setLogo] = React.useState("");
-      const [Region, setRegion] = React.useState("");
+      const [Région, setRegion] = React.useState("");
       const [Gouvernement, setGouvernement] = React.useState("");
       const [Adresse, setAdresse] = React.useState("");
       const [NomEntraineur, setNomEntraineur] = React.useState("");
@@ -21,7 +21,8 @@ import AddIcon from '@mui/icons-material/Add';
       };
       const changeSelectOptionHandlerregion = (event) => {
        
-        setRegion(event.target.value)
+       console.log(event.target.value)
+       setRegion(event.target.value)
       };
       
       /** Different arrays for different dropdowns */
@@ -488,6 +489,11 @@ const handleActivitesAdd=()=>
 {
   setActiviteList([...ActiviteList,{Activite:""}])
 }
+const handleActiviteschange=(e,index)=>
+{
+  
+  setActiviteList(ActiviteList=>[...ActiviteList,e.target.value])
+}
 const handleActivitesRemove=(index)=>
 {
  const List=[...ActiviteList];
@@ -499,9 +505,9 @@ const handleActivitesRemove=(index)=>
         var formdata = new FormData();
         formdata.append("Logo",Logo);
         formdata.append("Nom_club", NomClub);
-        formdata.append("Activités",ActiviteList);
+        formdata.append("Activités",ActiviteList[1]);
         formdata.append("Gouvernement",Gouvernement );
-        formdata.append("Région",Region );
+        formdata.append("Région",Région );
         formdata.append("Emplacement",Adresse );
         formdata.append("Nom_entren",NomEntraineur );
         var requestOptions = {
@@ -575,8 +581,8 @@ useEffect(() => {
       marginBottom:'20px'
     }
   }>
-<input type="text" style={{height:'50px'}} onChange={(e)=>{
-console.log(Logo.name)}} class="input-control form-control" id="activites"/>
+<input type="text" style={{height:'50px'}} onChange={(e)=>{handleActiviteschange(e,index)
+}} class="input-control form-control" id="activites"/>
 {ActiviteList.length>1&&(<button onClick={()=>handleActivitesRemove(index)}className="deletebutton input-group-append">Remove</button>)}
 
 </div>
