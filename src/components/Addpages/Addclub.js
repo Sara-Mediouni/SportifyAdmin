@@ -6,7 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
     export default function Addclub() {
       const [selected, setSelected] = React.useState("");
       const [NomClub, setNomClub] = React.useState("");
-      const [ActiviteList, setActiviteList] = React.useState([{Activite:""}]);
+      const [ActiviteList, setActiviteList] = React.useState([{}]);
       const [Logo, setLogo] = React.useState("");
       const [Région, setRegion] = React.useState("");
       const [Gouvernement, setGouvernement] = React.useState("");
@@ -487,11 +487,11 @@ const kebili =  [
 
 const handleActivitesAdd=()=>
 {
-  setActiviteList([...ActiviteList,{Activite:""}])
+  setActiviteList([...ActiviteList,{}])
 }
 const handleActiviteschange=(e,index)=>
 {
-  
+  if(e.target.value!==undefined)
   setActiviteList(ActiviteList=>[...ActiviteList,e.target.value])
 }
 const handleActivitesRemove=(index)=>
@@ -505,9 +505,11 @@ const handleActivitesRemove=(index)=>
         var formdata = new FormData();
         formdata.append("Logo",Logo);
         formdata.append("Nom_club", NomClub);
-        formdata.append("Activités",ActiviteList[1]);
+        for (let i = 1; i < ActiviteList.length; i++) {
+         
+        formdata.append("Activite[]",(ActiviteList[i]));}
         formdata.append("Gouvernement",Gouvernement );
-        formdata.append("Région",Région );
+        formdata.append("Region",Région);
         formdata.append("Emplacement",Adresse );
         formdata.append("Nom_entren",NomEntraineur );
         var requestOptions = {

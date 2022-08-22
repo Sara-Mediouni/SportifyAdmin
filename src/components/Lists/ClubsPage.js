@@ -82,8 +82,8 @@ const columns: GridColDef[] = [
     headerName: 'Temps',
     width: 170,
     type:'string',
-   
-   
+ 
+    
   },
   {
     field: 'action',
@@ -96,7 +96,7 @@ const columns: GridColDef[] = [
        
         <a href={"/modifclub/"+`${params.row.id}`} className="edit"><EditIcon style={{Color:'#444'}}/></a>
        
-        <a className="delete"><DeleteIcon style={{Color:"#555"}}/> </a>
+        <a className="delete" onClick={(e)=>{deleteClub(params.id,e)}}><DeleteIcon style={{Color:"#555"}}/> </a>
         </>
       )
     }
@@ -104,16 +104,19 @@ const columns: GridColDef[] = [
 ];
 
 const rows = clubs.map((c) => {
+  
   return {
    
     id:c.id,
     nom:c.Nomclub,
     gouvernement: c.Gouvernement,
     emplacement:c.Emplacement,
-    temps:c.Temps,
+    temps:c.Temps.map((t)=>{
+      return(t.Jours+" "+t.Horaire+"\r")
+    }),
     région:c.Région,
     logo:c.Logo,
-    activité:c.Activité
+    activité:c.Activite
     
   };});
   /** Different arrays for different dropdowns */
@@ -575,6 +578,20 @@ const kebili =  [
   if (type) {
     options = type.map((el) => <option key={el}>{el}</option>);
   }
+  const deleteClub=async(id)=>{ 
+    
+    try {
+      const res=await axios.delete(`http://localhost:3000/api/club/delete/${id}`)
+      .then(res=>{
+ 
+        clubs = clubs.filter(item => item.id !== id);  
+       this.setClubs( clubs);  
+      })
+    } catch (err) {
+      console.log(err);
+    }
+    show()
+   };
   const show=()=>{
      axios.get("http://localhost:3000/api/club/")
       .then(response => {
@@ -700,7 +717,7 @@ const kebili =  [
        rows={rows}
        columns={columns}
        pageSize={10}
-       rowsPerPageOptions={[5,10]}
+       rowsPerPageOptions={[5]}
        checkboxSelection
        disableSelectionOnClick
        getRowId={(row) => row.id}
