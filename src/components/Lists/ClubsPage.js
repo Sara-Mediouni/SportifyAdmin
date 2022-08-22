@@ -585,7 +585,8 @@ const kebili =  [
       .then(res=>{
  
         clubs = clubs.filter(item => item.id !== id);  
-       this.setClubs( clubs);  
+     setClubs( clubs);  
+     alert("Club deleted successfully !")
       })
     } catch (err) {
       console.log(err);

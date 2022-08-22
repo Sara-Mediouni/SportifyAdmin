@@ -530,7 +530,7 @@ import axios from "axios";
         fetch("http://localhost:3000/api/club/update/"+id, requestOptions)
           .then(response => response.text())
           .then(result => {console.log(result)
-          alert("Club updated successfully")})
+          alert("Club updated successfully !")})
           .catch(error => console.log('error', error));
 }
 useEffect(() => {
@@ -660,7 +660,7 @@ useEffect(() => {
     <label for="exampleFormControlFile1" >Logo</label>
     <input type="file" class="form-control-file" onChange={(e)=>{setLogo(e.target.files[0]);
     console.log(Logo.name)}} id="exampleFormControlFile1"/>
-  
+ 
   </div>
  
   <button type="submit" class="btn d-flex justify-content-center">Sauvegarder</button>

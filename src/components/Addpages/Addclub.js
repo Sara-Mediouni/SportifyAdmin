@@ -520,7 +520,8 @@ const handleActivitesRemove=(index)=>
         
         fetch("http://localhost:3000/api/club/store", requestOptions)
           .then(response => response.text())
-          .then(result => console.log(result))
+          .then(result => {console.log(result)
+          alert("Club inserted successfully !")})
           .catch(error => console.log('error', error));
 }
 useEffect(() => {
@@ -646,7 +647,13 @@ useEffect(() => {
                 </div>
   </div>
  
- 
+  {
+                                     Logo === '' ?
+                                        <div className="alert alert-danger">
+                                            <span>Tu n'as pas inséré un Logo !</span>
+                                        </div>
+                                      :<div></div>  
+                                 }
   <div class="form-group ">
 
     <label for="exampleFormControlFile1">Logo</label>
