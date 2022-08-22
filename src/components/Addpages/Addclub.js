@@ -654,7 +654,9 @@ useEffect(() => {
                                         </div>
                                       :<div></div>  
                                  }
- 
+  <div class="form-group ">
+
+    <label for="exampleFormControlFile1">Logo</label>
     <input type="file" onChange={(e)=>{setLogo(e.target.files[0]);
     console.log(Logo.name)}} class="form-control-file" id="exampleFormControlFile1"/>
   
