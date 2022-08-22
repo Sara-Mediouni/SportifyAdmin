@@ -654,7 +654,7 @@ useEffect(() => {
                                         </div>
                                       :<div></div>  
                                  }
-  <div class="form-grou ">
+  <div class="form-group ">
 
     <label for="exampleFormControlFile1">Logo</label>
     <input type="file" onChange={(e)=>{setLogo(e.target.files[0]);
