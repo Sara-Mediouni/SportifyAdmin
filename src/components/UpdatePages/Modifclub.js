@@ -530,7 +530,7 @@ import axios from "axios";
         fetch("http://localhost:3000/api/club/update/"+id, requestOptions)
           .then(response => response.text())
           .then(result => {console.log(result)
-          alert("Club updated successfully !")})
+          alert("Club modifié !")})
           .catch(error => console.log('error', error));
 }
 useEffect(() => {

@@ -521,7 +521,7 @@ const handleActivitesRemove=(index)=>
         fetch("http://localhost:3000/api/club/store", requestOptions)
           .then(response => response.text())
           .then(result => {console.log(result)
-          alert("Club inserted successfully !")})
+          alert("Club ajouté !")})
           .catch(error => console.log('error', error));
 }
 useEffect(() => {
@@ -554,7 +554,7 @@ useEffect(() => {
   
   <div class="form-group ">
     <label for="club">Nom du club</label>
-    <input 
+    <input required="true"
     onChange={(e)=>setNomClub(e.target.value)}
      type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
  
@@ -584,7 +584,7 @@ useEffect(() => {
       marginBottom:'20px'
     }
   }>
-<input type="text" style={{height:'50px'}} onChange={(e)=>{handleActiviteschange(e,index)
+<input required="true" type="text" style={{height:'50px'}} onChange={(e)=>{handleActiviteschange(e,index)
 }} class="input-control form-control" id="activites"/>
 {ActiviteList.length>1&&(<button onClick={()=>handleActivitesRemove(index)}className="deletebutton input-group-append">Remove</button>)}
 
@@ -604,7 +604,7 @@ useEffect(() => {
   <div class="form-group ">
   <label for="club">Gouvernement</label>
   <div class="input-select">
-                  <select data-trigger=""   onChange={changeSelectOptionHandler} class="form-select"name="choices-single-defaul">
+                  <select required="true" data-trigger=""   onChange={changeSelectOptionHandler} class="form-select"name="choices-single-defaul">
                   <option></option>
                   <option>Ariana</option>
                 <option>Béja</option>
@@ -636,7 +636,7 @@ useEffect(() => {
   <div class="form-group">
   <label for="club">Région</label>
   <div class="input-select">
-                  <select onChange={changeSelectOptionHandlerregion} data-trigger="" class="form-select"name="choices-single-defaul"
+                  <select required="true" onChange={changeSelectOptionHandlerregion} data-trigger="" class="form-select"name="choices-single-defaul"
                  >
                         {
               /** This is where we have used our options variable */
@@ -647,13 +647,7 @@ useEffect(() => {
                 </div>
   </div>
  
-  {
-                                     Logo === '' ?
-                                        <div className="alert alert-danger">
-                                            <span>Tu n'as pas inséré un Logo !</span>
-                                        </div>
-                                      :<div></div>  
-                                 }
+ 
   <div class="form-group ">
 
     <label for="exampleFormControlFile1">Logo</label>
@@ -670,7 +664,13 @@ useEffect(() => {
     
                      
           
-    
+     {
+                                     Logo === '' ?
+                                        <div className="alert alert-danger">
+                                            <span>Tu n'as pas inséré un Logo !</span>
+                                        </div>
+                                      :<div></div>  
+                                 }
     
     
                         </div>
