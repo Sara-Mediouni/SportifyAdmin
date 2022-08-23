@@ -20,13 +20,20 @@ import { Avatar } from '@mui/material';
 export default function ClubsPage() {
   const [selected, setSelected] = React.useState("");
   const [clubs, setClubs] = React.useState([{id: 0}]);
-  
+  const [queryregion, setqueryregion] = React.useState("");
+  const [querygouv, setquerygouv] = React.useState("");
   /** Function that will set different values to state variable
    * based on which dropdown is selected
    */
   const changeSelectOptionHandler = (event) => {
     setSelected(event.target.value);
+    setquerygouv(event.target.value);
   };
+  const changeSelectOptionHandlerregion = (event) => {
+       
+    console.log(event.target.value)
+    setqueryregion(event.target.value)
+   };
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 60 },
@@ -111,9 +118,7 @@ const rows = clubs.map((c) => {
     nom:c.Nomclub,
     gouvernement: c.Gouvernement,
     emplacement:c.Emplacement,
-    temps:c.Temps.map((t)=>{
-      return(t.Jours+" "+t.Horaire+"\r")
-    }),
+    temps:c.Temps,
     région:c.Région,
     logo:c.Logo,
     activité:c.Activite
@@ -596,7 +601,7 @@ const kebili =  [
   const show=()=>{
      axios.get("http://localhost:3000/api/club/")
       .then(response => {
-        const clubs = response.data;
+        const clubs = response.data.filter((v)=> v.Region.indexOf(queryregion) != -1&&v.Region.indexOf(querygouv) != -1 );
         setClubs(clubs)
       })
  }
@@ -679,7 +684,7 @@ const kebili =  [
               </div>
               <div className="input-field">
                 <div className="input-select">
-                  <select data-trigger=""  className="form-select"name="choices-single-defaul">
+                  <select data-trigger="" onChange={changeSelectOptionHandlerregion} className="form-select"name="choices-single-defaul">
                     <option placeholder="" value="">Région</option>
                     {
               /** This is where we have used our options variable */
@@ -696,7 +701,7 @@ const kebili =  [
                   <span>108 </span>résultats</div>
                 <div className="group-btn">
                   <button className="btn-delete" id="delete">RESET</button>
-                  <button className="btn-search">Rechercher</button>
+                  <button className="btn-search" >Rechercher</button>
                 </div>
               </div>
             </div>

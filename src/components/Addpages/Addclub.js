@@ -6,7 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
     export default function Addclub() {
       const [selected, setSelected] = React.useState("");
       const [NomClub, setNomClub] = React.useState("");
-      const [ActiviteList, setActiviteList] = React.useState([{}]);
+      const [ActiviteList, setActiviteList] = React.useState([{Activite:''}]);
       const [Logo, setLogo] = React.useState("");
       const [Région, setRegion] = React.useState("");
       const [Gouvernement, setGouvernement] = React.useState("");
@@ -487,12 +487,14 @@ const kebili =  [
 
 const handleActivitesAdd=()=>
 {
-  setActiviteList([...ActiviteList,{}])
+  setActiviteList([...ActiviteList,{Activite:""}])
 }
 const handleActiviteschange=(e,index)=>
 {
-  if(e.target.value!==undefined)
-  setActiviteList(ActiviteList=>[...ActiviteList,e.target.value])
+  const {name,value}=e.target
+  const list=[...ActiviteList]
+  list[index][name]=value;
+  setActiviteList(list)
 }
 const handleActivitesRemove=(index)=>
 {
