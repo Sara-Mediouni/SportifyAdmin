@@ -1,29 +1,139 @@
-import SideNav from "../Sidenav/Sidenav";
-import React, { useEffect } from 'react'
-import axios from "axios";
-
+import SideNav from "./Sidenav.css";
+  import React from 'react'
+import { useState,useEffect } from "react";
 import AddIcon from '@mui/icons-material/Add';
+ import axios from "axios";   
     export default function Addclub() {
-      const [selected, setSelected] = React.useState("");
-      const [NomClub, setNomClub] = React.useState("");
-      const [ActiviteList, setActiviteList] = React.useState([{Activite:''}]);
-      const [Logo, setLogo] = React.useState("");
-      const [Région, setRegion] = React.useState("");
-      const [Gouvernement, setGouvernement] = React.useState("");
-      const [Adresse, setAdresse] = React.useState("");
-      const [NomEntraineur, setNomEntraineur] = React.useState("");
+      const [selected, setSelected] =useState("");
+      const [club, setClub] =useState(null);
+      const [nom_club, setNom] =useState(null);
+      const [emplacement, setEmplacement] =useState(null);
+      const [region, setRegion] =useState(null);
+      const [gouvernement, setGouvernement] =useState(null);
+      const [activites, setActivite] =useState([{activite:''}]);
+      const [nom_entraineur, setNomE] =useState(null);
+      const [temp, setTemps] =useState([{jour:"",horaire:""}]);
+      const [logo,setLogo]=useState(null);
+      let l=[];
+      const [clicked,setClicked]=useState(false);
+      const handleChange=(e)=>{
+        const value=e.target.value;
+        setClub({...club,[e.target.name]:value});
+       
+
+      }
+      //console.log(activite.split(" "))
+      const activiteHandler=(e)=>{
+         handleChange(e);
+         const ch=e.target.value;
+        l=[ch.split(" ")];
+         
+      //setActivite(l);
+         
+        
+      }
+      const emplacementHandler=(e)=>{
+        handleChange(e);
+        setEmplacement(e.target.value);
+      }
+
+
       /** Function that will set different values to state variable
        * based on which dropdown is selected
        */
-      const changeSelectOptionHandler = (event) => {
-        setSelected(event.target.value);
-        setGouvernement(event.target.value)
+       const changeSelectOptionHandler = (e) => {
+        setSelected(e.target.value);
+        handleChange(e);
+        setGouvernement(e.target.value)
       };
-      const changeSelectOptionHandlerregion = (event) => {
+      const changeSelectOptionHandlerregion = (e) => {
+        handleChange(e);
+        setRegion(e.target.value)
+      };
+      const Logohandler=(e)=>{
+        handleChange(e);
+        setLogo(e.target.files[0]);
+        
+      }
+      const handleChangenc =(e)=>{
+        setNom(e.target.value)
+      }
+    
+     const handleActivitesAdd=()=>
+     {
+       setActivite([...activites,{activite:""}])
+     }
+     const handleActiviteschange=(e,index)=>
+     {
+      let Newactivites=[...activites];
+      Newactivites[index][e.target.name]=e.target.value;
+       //if(e.target.value!==undefined)
+       setActivite(Newactivites);
+     }
+     const handleActivitesRemove=(index)=>
+     {
+      let List=[...activites];
+      List.splice(index,1);
+      setActivite(List)
+     
+     }
+     let handleChangeTemps=(i, e)=> {
+      let Newtemps = [...temp];
+      Newtemps[i][e.target.name] = e.target.value;
+      setTemps(Newtemps);
+    }
+  
+    let addTemps=()=> {
+      
+        setTemps([...temp, { jour: "", horaire: "" }]);
+     
+    }
+  
+    let removeTemps=(i)=>{
+      let Newtemps = [...temp];
+      Newtemps.splice(i, 1);
+      setTemps(Newtemps);
+      
+      
+    }
+      
+ 
+     const additem=async()=>{
+      console.log(temp[1]);
+      var formdata = new FormData();
+formdata.append("Nom_club",nom_club);
+formdata.append("Logo", logo);
+formdata.append("Emplacement",emplacement);
+for (let i = 0; i < activites.length; i++) {   
+  formdata.append("Activite[]",(activites[i].activite));}
+  for (let i = 0; i <temp.length; i++) {   
+   formdata.append("Temps[{}]",temp[i])
+ 
+   //formdata.append("temps[].horaire",temp[i].horaire);
+   /*
+    formdata.append("temps[].horaire",temp[i].horaire.toString())*/
+      
+  }
+  
+   
+formdata.append("Nom_entren",nom_entraineur);
+formdata.append("Gouvernement", gouvernement);
+formdata.append("Region", region);
+var requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:3000/api/club/store", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+     }
+
        
-       console.log(event.target.value)
-       setRegion(event.target.value)
-      };
+ 
+
       
       /** Different arrays for different dropdowns */
       const ariana = [
@@ -379,31 +489,7 @@ const kebili =  [
       
       /** This will be used to create set of options that user will see */
       let options = null;
-      /**    <option value="2">Ariana</option>
-                <option value="3">Béja</option>
-                <option value="4">Ben Arous</option>
-                <option value="5">Bizerte</option>
-                <option value="6">Gabès</option>
-                <option value="7">Gafsa</option>
-                <option value="8">Jendouba</option>
-                <option value="9">Kairouan</option>
-                <option value="10">Kasserine</option>
-                <option value="11">Kébili</option>
-                <option value="12">Le Kef</option>
-                <option value="13">Mahdia</option>
-                <option value="14">La Manouba</option>
-                <option value="15">Médenine</option>
-                <option value="16">Monastir</option>
-                <option value="17">Nabeul</option>
-                <option value="18">Sfax</option>
-                <option value="19">Sidi Bouzid</option>
-                <option value="20">Siliana</option>
-                <option value="21">Sousse</option>
-                <option value="22">Tataouine</option>
-                <option value="23">Tozeur</option>
-                <option value="24">Tunis</option>
-                <option value="25">Zaghouan</option> */
-      /** Setting Type variable according to dropdown */
+    
       if (selected === "Ariana") {
         type = ariana;
       } else if (selected === "Béja") {
@@ -484,52 +570,6 @@ const kebili =  [
       if (type) {
         options = type.map((el) => <option key={el}>{el}</option>);
       }
-
-const handleActivitesAdd=()=>
-{
-  setActiviteList([...ActiviteList,{Activite:""}])
-}
-const handleActiviteschange=(e,index)=>
-{
-  const {name,value}=e.target
-  const list=[...ActiviteList]
-  list[index][name]=value;
-  setActiviteList(list)
-}
-const handleActivitesRemove=(index)=>
-{
- const List=[...ActiviteList];
- List.splice(index,1);
- setActiviteList(List)
- console.log(ActiviteList)
-}
-      const create=()=>{
-        var formdata = new FormData();
-        formdata.append("Logo",Logo);
-        formdata.append("Nom_club", NomClub);
-        for (let i = 1; i < ActiviteList.length; i++) {
-         
-        formdata.append("Activite[]",(ActiviteList[i]));}
-        formdata.append("Gouvernement",Gouvernement );
-        formdata.append("Region",Région);
-        formdata.append("Emplacement",Adresse );
-        formdata.append("Nom_entren",NomEntraineur );
-        var requestOptions = {
-          method: 'POST',
-          body: formdata,
-          redirect: 'follow'
-        };
-        
-        fetch("http://localhost:3000/api/club/store", requestOptions)
-          .then(response => response.text())
-          .then(result => {console.log(result)
-          alert("Club ajouté !")})
-          .catch(error => console.log('error', error));
-}
-useEffect(() => {
-  console.log(ActiviteList)
-
-}, []);
       return (
         <div id="wrapper">
 
@@ -549,64 +589,86 @@ useEffect(() => {
     
                                 </div>
                                <div class="">
-                               <form enctype="multipart/form-data"
-                               onSubmit={(e) => {e.preventDefault();
-                              create()}
-                              } style={{marginLeft:'10%',alignItems:'left'}}>
+                               <form onSubmit={(e)=>{e.preventDefault();additem()}}style={{marginLeft:'10%',alignItems:'left'}}>
   
   <div class="form-group ">
     <label for="club">Nom du club</label>
-    <input required="true"
-    onChange={(e)=>setNomClub(e.target.value)}
-     type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
+    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="nom_club" onChange={handleChangenc}/>
  
   </div>
   <div class="form-group ">
     <label for="club">Adresse</label>
-    <input 
-    onChange={(e)=>setAdresse(e.target.value)}
-     type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
+    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="emplacement" onChange={emplacementHandler}/>
  
   </div>
   <div class="form-group ">
     <label for="club">Nom de l'entraîneur</label>
-    <input
-    onChange={(e)=>setNomEntraineur(e.target.value)}
-    type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom"/>
+    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="nom_entraineur" onChange={handleChange}/>
  
   </div>
+  
   <div class="form-group">
 
 <label for="activites">Activité(s)</label>
-{ActiviteList.map((SingleActivite,index)=>(
-<div key={index}>
-  <div className="input-group" style={
+{activites.map((element, index) => (
+            <div className="form-inline" key={index}>
+                <div className="input-group" style={
     {
       
       marginBottom:'20px'
     }
   }>
-<input required="true" type="text" style={{height:'50px'}} onChange={(e)=>{handleActiviteschange(e,index)
-}} class="input-control form-control" id="activites"/>
-{ActiviteList.length>1&&(<button onClick={()=>handleActivitesRemove(index)}className="deletebutton input-group-append">Remove</button>)}
+              <input type="text" style={{height:'40px'}} className="input-control form-control" id="activites" name="activite" value={element.activite || ""} onChange={e => handleActiviteschange(e,index)} />
+               
+              {
+                index ? 
+                 <span> <button type="button"   className="deletebutton input-group-append form-control" onClick={() => handleActivitesRemove(index)}>Remove</button> </span>
+                : null
+              }
+            </div>
+            </div>
+          ))}</div>
+          
+          <div className="col-sm-2">
+          <div className="button-section">
+              <button className="button add" type="button" style={{fontSize:'20px'}} onClick={() => handleActivitesAdd()}>Add</button>
+           
+              </div>
+          </div>
+          <div class="form-group">
 
-</div>
-{ActiviteList.length-1===index && ActiviteList.length<4 && 
-<div className="col-sm-2">
-  <button class="addbutton">
-    <AddIcon onClick={handleActivitesAdd}style={{fontSize:'20px'}}/>Ajouter</button>
-    </div>
+<label for="Horaires">Horaires</label>
+{temp.map((element, index) => (
+            <div className="form-inline" key={index}>
+                <div className="input-group" style={
+    {
+      
+      marginBottom:'20px'
     }
-</div>
-))}
-
-
-
-</div> 
+  }> 
+              <label >Jour(s)</label>  
+              <input type="text" style={{height:'40px'}} className="input-control form-control" name="jour" value={element.jour || ""} onChange={e=>handleChangeTemps(index,e)} />
+              <label>Horaire(s)</label> 
+              <input type="text" style={{height:'40px'}} className="input-control form-control" name="horaire" value={element.horaire || ""} onChange={e => handleChangeTemps(index,e)} />
+              {
+                index ? 
+                 <span> <button type="button"   className="deletebutton input-group-append form-control" onClick={() => removeTemps(index)}>Remove</button> </span>
+                : null
+              }
+            </div>
+            </div>
+          ))}</div>
+          
+          <div className="col-sm-2">
+          <div className="button-section">
+              <button className="button add" type="button" style={{fontSize:'20px'}} onClick={() =>addTemps()}>Add</button>
+           
+              </div>
+          </div>
   <div class="form-group ">
   <label for="club">Gouvernement</label>
   <div class="input-select">
-                  <select required="true" data-trigger=""   onChange={changeSelectOptionHandler} class="form-select"name="choices-single-defaul">
+                  <select data-trigger="" onChange={changeSelectOptionHandler} class="form-select" name="gouvernement">
                   <option></option>
                   <option>Ariana</option>
                 <option>Béja</option>
@@ -638,7 +700,7 @@ useEffect(() => {
   <div class="form-group">
   <label for="club">Région</label>
   <div class="input-select">
-                  <select required="true" onChange={changeSelectOptionHandlerregion} data-trigger="" class="form-select"name="choices-single-defaul"
+                  <select data-trigger="" class="form-select"name="region"onChange={changeSelectOptionHandlerregion}
                  >
                         {
               /** This is where we have used our options variable */
@@ -648,31 +710,20 @@ useEffect(() => {
                   
                 </div>
   </div>
- 
- 
   <div class="form-group ">
 
     <label for="exampleFormControlFile1">Logo</label>
-    <input type="file" onChange={(e)=>{setLogo(e.target.files[0]);
-    console.log(Logo.name)}} class="form-control-file" id="exampleFormControlFile1"/>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="logo" onChange={Logohandler}/>
   
   </div>
-   
-
  
-  <button type="submit" class="btn d-flex justify-content-center">Sauvegarder</button>
+  <button type="submit" class="btn d-flex justify-content-center" >Sauvegarder</button>
 </form>
                                </div>
     
                      
           
-     {
-                                     Logo === '' ?
-                                        <div className="alert alert-danger">
-                                            <span>Tu n'as pas inséré un Logo !</span>
-                                        </div>
-                                      :<div></div>  
-                                 }
+    
     
     
                         </div>
