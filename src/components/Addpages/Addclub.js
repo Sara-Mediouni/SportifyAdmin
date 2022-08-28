@@ -1,5 +1,6 @@
-import SideNav from "./Sidenav.css";
+import SideNav from "../Sidenav/Sidenav";
   import React from 'react'
+  import '../Sidenav/Sidenav.css'
 import { useState,useEffect } from "react";
 import AddIcon from '@mui/icons-material/Add';
  import axios from "axios";   

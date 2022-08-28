@@ -36,7 +36,7 @@ export default function EventsPage() {
    };
 
    const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 60 },
+    { field: 'id', headerName: 'ID', width: 160 },
     {
       field: 'titre',
       headerName: 'Titre',
@@ -58,7 +58,7 @@ export default function EventsPage() {
         return(
           
          
-          <Avatar src={"http://localhost:3000/iploadsevent/"+params.value}/>
+          <Avatar src={"http://localhost:3000/uploadsevent/"+params.value}/>
           
         )
       }
@@ -67,12 +67,12 @@ export default function EventsPage() {
       field: 'action',
       headerName: 'Action',
       
-      width: 120,
+      width: 190,
       renderCell:(params)=>{
         return(
           <>
          
-          <a href={"/modifclub/"+`${params.row.id}`} className="edit"><EditIcon style={{Color:'#444'}}/></a>
+          <a href={"/modifevent/"+`${params.row.id}`} className="edit"><EditIcon style={{Color:'#444'}}/></a>
          
           <a className="delete" onClick={(e)=>{deleteClub(params.id,e)}}><DeleteIcon style={{Color:"#555"}}/> </a>
           </>
@@ -548,15 +548,21 @@ const kebili =  [
   if (type) {
     options = type.map((el) => <option key={el}>{el}</option>);
   }
+  const show=()=>{
+    axios.get("http://localhost:3000/api/event/")
+    .then(response => {
+      const events = response.data;
+      setEvents(events)
+  })};
   const deleteClub=async(id)=>{ 
     
     try {
-      const res=await axios.delete(`http://localhost:3000/api/club/delete/${id}`)
+      const res=await axios.delete(`http://localhost:3000/api/event/deleteevent/${id}`)
       .then(res=>{
  
-        clubs = clubs.filter(item => item.id !== id);  
-     setClubs( clubs);  
-     alert("Club deleted successfully !")
+        events = events.filter(item => item.id !== id);  
+     setEvents( events);  
+     alert("Event deleted successfully !")
       })
     } catch (err) {
       console.log(err);
@@ -564,7 +570,7 @@ const kebili =  [
     show()
    };
   
- }
+ 
  useEffect(() => {
   show();
  

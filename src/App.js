@@ -21,6 +21,8 @@ import Addnews from './components/Addpages/Addnews';
 import AddEvents from './components/Addpages/AddEvents';
 import EventsPage from './components/Lists/EventsPage';
 import NewsPage from './components/Lists/NewsPage';
+import ModifNews from './components/UpdatePages/ModifNews';
+import ModifEvents from './components/UpdatePages/ModifEvents';
 
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
     <Route path="/addclubs" element={<Addclub/>} exact />
     <Route path="/modifclub/:id" element={<Modifclub/>} exact />
     <Route path="/modifsalles" element={<Modifsalle/>} exact />
+    <Route path="/modifevent/:id" element={<ModifEvents/>} exact />
+    <Route path="/modifnews" element={<ModifNews/>} exact />
     <Route path="/addevent" element={<Modifclub/>} exact />
     <Route path="/addnews" element={<AddEvents/>} exact />
     <Route path="/addevents" element={<Addnews/>} exact />

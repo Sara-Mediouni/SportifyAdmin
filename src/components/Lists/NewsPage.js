@@ -36,7 +36,7 @@ export default function NewsPage() {
    };
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 60 },
+  { field: 'id', headerName: 'ID', width: 160 },
   {
     field: 'titre',
     headerName: 'Titre',
@@ -67,12 +67,12 @@ const columns: GridColDef[] = [
     field: 'action',
     headerName: 'Action',
     
-    width: 120,
+    width: 190,
     renderCell:(params)=>{
       return(
         <>
        
-        <a href={"/modifclub/"+`${params.row.id}`} className="edit"><EditIcon style={{Color:'#444'}}/></a>
+        <a href={"/modifnews/"+`${params.row.id}`} className="edit"><EditIcon style={{Color:'#444'}}/></a>
        
         <a className="delete" onClick={(e)=>{deleteClub(params.id,e)}}><DeleteIcon style={{Color:"#555"}}/> </a>
         </>
@@ -552,11 +552,11 @@ const kebili =  [
   const deleteClub=async(id)=>{ 
     
     try {
-      const res=await axios.delete(`http://localhost:3000/api/club/delete/${id}`)
+      const res=await axios.delete(`http://localhost:3000/api/news/deletenews/${id}`)
       .then(res=>{
  
-        clubs = clubs.filter(item => item.id !== id);  
-     setClubs( clubs);  
+        news = news.filter(item => item.id !== id);  
+     setNews( news);  
      alert("Club deleted successfully !")
       })
     } catch (err) {
