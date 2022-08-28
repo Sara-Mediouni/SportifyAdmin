@@ -20,21 +20,11 @@ import { Avatar } from '@mui/material';
 export default function NewsPage() {
   const [selected, setSelected] = React.useState("");
   const [news, setNews] = React.useState([{id: 0}]);
-  const [queryregion, setqueryregion] = React.useState("");
-  const [querygouv, setquerygouv] = React.useState("");
+
   /** Function that will set different values to state variable
    * based on which dropdown is selected
    */
-  const changeSelectOptionHandler = (event) => {
-    setSelected(event.target.value);
-    setquerygouv(event.target.value);
-  };
-  const changeSelectOptionHandlerregion = (event) => {
-       
-    console.log(event.target.value)
-    setqueryregion(event.target.value)
-   };
-
+ 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 160 },
   {
@@ -74,7 +64,7 @@ const columns: GridColDef[] = [
        
         <a href={"/modifnews/"+`${params.row.id}`} className="edit"><EditIcon style={{Color:'#444'}}/></a>
        
-        <a className="delete" onClick={(e)=>{deleteClub(params.id,e)}}><DeleteIcon style={{Color:"#555"}}/> </a>
+        <a className="delete" onClick={(e)=>{deleteNews(params.id,e)}}><DeleteIcon style={{Color:"#555"}}/> </a>
         </>
       )
     }
@@ -549,7 +539,8 @@ const kebili =  [
   if (type) {
     options = type.map((el) => <option key={el}>{el}</option>);
   }
-  const deleteClub=async(id)=>{ 
+  
+  const deleteNews=async(id)=>{ 
     
     try {
       const res=await axios.delete(`http://localhost:3000/api/news/deletenews/${id}`)
@@ -557,7 +548,7 @@ const kebili =  [
  
         news = news.filter(item => item.id !== id);  
      setNews( news);  
-     alert("Club deleted successfully !")
+     alert("News deleted successfully !")
       })
     } catch (err) {
       console.log(err);
@@ -565,8 +556,11 @@ const kebili =  [
     show()
    };
   const show=()=>{
-   
- }
+    axios.get("http://localhost:3000/api/news/")
+    .then(response => {
+      const news = response.data;
+      setNews(news)
+ })}
  useEffect(() => {
   show();
   
