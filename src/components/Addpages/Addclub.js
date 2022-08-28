@@ -619,11 +619,11 @@ const kebili =  [
       marginBottom:'20px'
     }
   }>
-              <input type="text" style={{height:'40px'}} className="input-control form-control" id="activites" name="activite" value={element.activite || ""} onChange={e => handleActiviteschange(e,index)} />
+              <input type="text" style={{height:'40px'}} className="input-group input-control form-control" id="activites" name="activite" value={element.activite || ""} onChange={e => handleActiviteschange(e,index)} />
                
               {
                 index ? 
-                 <span> <button type="button"   className="deletebutton input-group-append form-control" onClick={() => handleActivitesRemove(index)}>Remove</button> </span>
+                 <span> <button type="button"   className="deletebutton input-group-append form-control " onClick={() => handleActivitesRemove(index)}>Remove</button> </span>
                 : null
               }
             </div>
@@ -632,13 +632,13 @@ const kebili =  [
           
           <div className="col-sm-2">
           <div className="button-section">
-              <button className="button add" type="button" style={{fontSize:'20px'}} onClick={() => handleActivitesAdd()}>Add</button>
+              <button className="addbutton" type="button" style={{fontSize:'20px'}} onClick={() => handleActivitesAdd()}>Add</button>
            
               </div>
           </div>
           <div class="form-group">
 
-<label for="Horaires">Horaires</label>
+          <label for="Horaires">Horaires</label>
 {temp.map((element, index) => (
             <div className="form-inline" key={index}>
                 <div className="input-group" style={
@@ -647,13 +647,13 @@ const kebili =  [
       marginBottom:'20px'
     }
   }> 
-              <label >Jour(s)</label>  
+              <label style={{marginTop:'-25px'}}>Jour(s)</label>  
               <input type="text" style={{height:'40px'}} className="input-control form-control" name="jour" value={element.jour || ""} onChange={e=>handleChangeTemps(index,e)} />
-              <label>Horaire(s)</label> 
+              <label style={{marginTop:'-25px',marginLeft:'20px'}}>Horaire(s)</label> 
               <input type="text" style={{height:'40px'}} className="input-control form-control" name="horaire" value={element.horaire || ""} onChange={e => handleChangeTemps(index,e)} />
               {
                 index ? 
-                 <span> <button type="button"   className="deletebutton input-group-append form-control" onClick={() => removeTemps(index)}>Remove</button> </span>
+                 <span> <button style={{border:'none',backgroundColor:'lightgray',height:'40px'}} type="button"   className="deletebutton input-group-append form-control" onClick={() => removeTemps(index)}>Remove</button> </span>
                 : null
               }
             </div>
@@ -662,7 +662,7 @@ const kebili =  [
           
           <div className="col-sm-2">
           <div className="button-section">
-              <button className="button add" type="button" style={{fontSize:'20px'}} onClick={() =>addTemps()}>Add</button>
+              <button className="addbutton" type="button" style={{fontSize:'20px'}} onClick={() =>addTemps()}>Add</button>
            
               </div>
           </div>
