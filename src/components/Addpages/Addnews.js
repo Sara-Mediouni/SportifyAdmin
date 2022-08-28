@@ -1,6 +1,6 @@
 import React from 'react'
 import '../Sidenav/Sidenav.css'
-export default function Ajoutnews() {
+export default function Addnews() {
   return (
     <div id="wrapper">
 

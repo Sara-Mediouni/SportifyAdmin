@@ -1,6 +1,6 @@
 import React from 'react'
 import '../Sidenav/Sidenav.css'
-export default function AjoutEvents() {
+export default function AddEvents() {
   return (
     <div id="wrapper">
 

@@ -19,7 +19,7 @@ import { getRowIdFromRowModel } from '@mui/x-data-grid/hooks/features/rows/gridR
 import { Avatar } from '@mui/material';
 export default function EventsPage() {
   const [selected, setSelected] = React.useState("");
-  const [clubs, setClubs] = React.useState([{id: 0}]);
+  const [events, setEvents] = React.useState([{id: 0}]);
   const [queryregion, setqueryregion] = React.useState("");
   const [querygouv, setquerygouv] = React.useState("");
   /** Function that will set different values to state variable
@@ -58,7 +58,7 @@ export default function EventsPage() {
         return(
           
          
-          <Avatar src={"http://localhost:3000/images/"+params.value}/>
+          <Avatar src={"http://localhost:3000/iploadsevent/"+params.value}/>
           
         )
       }
@@ -85,16 +85,9 @@ const rows = events.map((e) => {
   return {
    
     id:e.id,
-    titre:c.Nomculb,
-    gouvernement: c.Gouvernement,
-    emplacement:c.Emplacement,
-    temps:c.Temps.map((t)=>{
-      console.log("test")
-    }),
-    région:c.Région,
-    logo:c.Logo,
-    activité:c.Activite
-    
+    titre:e.Titre,
+    description: e.Description,
+    image:e.Image
   };});
   /** Different arrays for different dropdowns */
   const ariana = [
@@ -570,16 +563,11 @@ const kebili =  [
     }
     show()
    };
-  const show=()=>{
-     axios.get("http://localhost:3000/api/club/")
-      .then(response => {
-        const clubs = response.data.filter((v)=> v.Region.indexOf(queryregion) != -1&&v.Region.indexOf(querygouv) != -1 );
-        setClubs(clubs)
-      })
+  
  }
  useEffect(() => {
   show();
-  console.log(clubs)
+ 
 
 }, []);
   return (
@@ -598,7 +586,7 @@ const kebili =  [
 
 
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 className="h3 mb-0 title">Liste des clubs</h1>
+                                <h1 className="h3 mb-0 title">Liste des évènements</h1>
 
                             </div>
                            
@@ -683,7 +671,7 @@ const kebili =  [
       <div className="row">
                    
                     <div className="col-sm-2">
-<a className="add" href="/addclubs"><AddIcon style={{ fontSize:'50px'}}/></a>
+<a className="add" href="/addevents"><AddIcon style={{ fontSize:'50px'}}/></a>
                     
                 </div>
                 </div>

@@ -17,8 +17,10 @@ import Dashboard from './components/Dashboard/Dashbord';
 import AddSalle from './components/Addpages/AddSalle';
 import SallePage from './components/Lists/SallesPage';
 import Modifsalle from './components/UpdatePages/Modifsalles';
-import Ajoutnews from './components/Addpages/Ajoutnews';
-import AjoutEvents from './components/Addpages/AjoutEvents';
+import Addnews from './components/Addpages/Addnews';
+import AddEvents from './components/Addpages/AddEvents';
+import EventsPage from './components/Lists/EventsPage';
+import NewsPage from './components/Lists/NewsPage';
 
 
 function App() {
@@ -34,9 +36,11 @@ function App() {
     <Route path="/addclubs" element={<Addclub/>} exact />
     <Route path="/modifclub/:id" element={<Modifclub/>} exact />
     <Route path="/modifsalles" element={<Modifsalle/>} exact />
-    <Route path="/addsalles" element={<AddSalle/>} exact />
-    <Route path="/news" element={<Ajoutnews/>} exact />
-    <Route path="/events" element={<AjoutEvents/>} exact />
+    <Route path="/addevent" element={<Modifclub/>} exact />
+    <Route path="/addnews" element={<AddEvents/>} exact />
+    <Route path="/addevents" element={<Addnews/>} exact />
+    <Route path="/news" element={<NewsPage/>} exact />
+    <Route path="/events" element={<EventsPage/>} exact />
     <Route path="/users" element={<UsersPage/>} exact />
     <Route path="/" element={<Dashboard/>} exact />
     </Routes>
