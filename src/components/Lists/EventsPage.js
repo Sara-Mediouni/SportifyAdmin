@@ -26,7 +26,15 @@ export default function EventsPage() {
    * based on which dropdown is selected
    */
  
-
+   const changeSelectOptionHandler = (event) => {
+    setSelected(event.target.value);
+    setquerygouv(event.target.value);
+  };
+  const changeSelectOptionHandlerregion = (event) => {
+       
+    console.log(event.target.value)
+    setqueryregion(event.target.value)
+   };
    const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 160 },
     {

@@ -20,11 +20,20 @@ import { Avatar } from '@mui/material';
 export default function NewsPage() {
   const [selected, setSelected] = React.useState("");
   const [news, setNews] = React.useState([{id: 0}]);
-
+  const [queryregion, setqueryregion] = React.useState("");
+  const [querygouv, setquerygouv] = React.useState("");
   /** Function that will set different values to state variable
    * based on which dropdown is selected
    */
- 
+   const changeSelectOptionHandler = (event) => {
+    setSelected(event.target.value);
+    setquerygouv(event.target.value);
+  };
+  const changeSelectOptionHandlerregion = (event) => {
+       
+    console.log(event.target.value)
+    setqueryregion(event.target.value)
+   };
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 160 },
   {

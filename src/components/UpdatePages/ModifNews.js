@@ -6,7 +6,7 @@ export default function ModifNews() {
     const [titre, setTitre] =useState(null);
     const [description, setDescription] =useState(null);
     const [image, setImage] =useState(null);
-  
+    const [ordre, setOrdre] =useState(null);
     const { id } = useParams();
   
     const Imagehandler=(e)=>{
@@ -27,7 +27,7 @@ export default function ModifNews() {
           fetch("http://localhost:3000/api/news/updatenews/"+id, requestOptions)
             .then(response => response.text())
             .then(result => {console.log(result)
-            alert("Event modifié !")})
+            alert("News modifié !")})
             .catch(error => console.log('error', error));
   }
   return (
@@ -61,7 +61,11 @@ export default function ModifNews() {
 <textarea type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setDescription(e.target.value)}/>
 
 </div>
+<div class="form-group ">
+<label for="club">Ordre</label>
+<input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le titre"onChange={(e)=>setOrdre(e.target.value)}/>
 
+</div>
 
 <div class="form-group ">
 
