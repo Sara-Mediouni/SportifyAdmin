@@ -13,8 +13,9 @@ import AddIcon from '@mui/icons-material/Add';
       const [gouvernement, setGouvernement] =useState(null);
       const [activites, setActivite] =useState([{activite:''}]);
       const [nom_entraineur, setNomE] =useState(null);
-      const [temp, setTemps] =useState([{jour:"",horaire:""}]);
+      const [temp, setTemps] =useState([{Jours:"",Horaire:""}]);
       const [logo,setLogo]=useState(null);
+      const [numtel,setNumTel]=useState(null);
       let l=[];
       const [clicked,setClicked]=useState(false);
       const handleChange=(e)=>{
@@ -33,10 +34,7 @@ import AddIcon from '@mui/icons-material/Add';
          
         
       }
-      const emplacementHandler=(e)=>{
-        handleChange(e);
-        setEmplacement(e.target.value);
-      }
+      
 
 
       /** Function that will set different values to state variable
@@ -51,14 +49,8 @@ import AddIcon from '@mui/icons-material/Add';
         handleChange(e);
         setRegion(e.target.value)
       };
-      const Logohandler=(e)=>{
-        handleChange(e);
-        setLogo(e.target.files[0]);
-        
-      }
-      const handleChangenc =(e)=>{
-        setNom(e.target.value)
-      }
+    
+     
     
      const handleActivitesAdd=()=>
      {
@@ -86,7 +78,7 @@ import AddIcon from '@mui/icons-material/Add';
   
     let addTemps=()=> {
       
-        setTemps([...temp, { jour: "", horaire: "" }]);
+        setTemps([...temp, { Jours: "", Horaire: "" }]);
      
     }
   
@@ -100,21 +92,14 @@ import AddIcon from '@mui/icons-material/Add';
       
  
      const additem=async()=>{
-      console.log(temp[1]);
+    
       var formdata = new FormData();
 formdata.append("Nom_club",nom_club);
 formdata.append("Logo", logo);
 formdata.append("Emplacement",emplacement);
 for (let i = 0; i < activites.length; i++) {   
   formdata.append("Activite[]",(activites[i].activite));}
-  for (let i = 0; i <temp.length; i++) {   
-   formdata.append("Temps[{}]",temp[i])
- 
-   //formdata.append("temps[].horaire",temp[i].horaire);
-   /*
-    formdata.append("temps[].horaire",temp[i].horaire.toString())*/
-      
-  }
+  formdata.append("Temps",JSON.stringify(temp));
   
    
 formdata.append("Nom_entren",nom_entraineur);
@@ -594,17 +579,22 @@ const kebili =  [
   
   <div class="form-group ">
     <label for="club">Nom du club</label>
-    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="nom_club" onChange={handleChangenc}/>
+    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="nom_club" onChange={(e)=>setNom(e.target.value)}/>
  
   </div>
   <div class="form-group ">
     <label for="club">Adresse</label>
-    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="emplacement" onChange={emplacementHandler}/>
+    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="emplacement" onChange={(e)=> setEmplacement(e.target.value)}/>
+ 
+  </div>
+  <div class="form-group ">
+    <label for="club">Numéro du téléphone</label>
+    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le numéro" name="num_tel" onChange={(e)=>setNumTel(e.target.value)}/>
  
   </div>
   <div class="form-group ">
     <label for="club">Nom de l'entraîneur</label>
-    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="nom_entraineur" onChange={handleChange}/>
+    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="nom_entren" onChange={(e)=>setNomE(e.target.value)}/>
  
   </div>
   
@@ -648,9 +638,9 @@ const kebili =  [
     }
   }> 
               <label style={{marginTop:'-25px'}}>Jour(s)</label>  
-              <input type="text" style={{height:'40px'}} className="input-control form-control" name="jour" value={element.jour || ""} onChange={e=>handleChangeTemps(index,e)} />
+              <input type="text" style={{height:'40px'}} className="input-control form-control" name="Jours" value={element.Jours || ""} onChange={e=>handleChangeTemps(index,e)} />
               <label style={{marginTop:'-25px',marginLeft:'20px'}}>Horaire(s)</label> 
-              <input type="text" style={{height:'40px'}} className="input-control form-control" name="horaire" value={element.horaire || ""} onChange={e => handleChangeTemps(index,e)} />
+              <input type="text" style={{height:'40px'}} className="input-control form-control" name="Horaire" value={element.Horaire || ""} onChange={e => handleChangeTemps(index,e)} />
               {
                 index ? 
                  <span> <button style={{border:'none',backgroundColor:'lightgray',height:'40px'}} type="button"   className="deletebutton input-group-append form-control" onClick={() => removeTemps(index)}>Remove</button> </span>
@@ -670,7 +660,7 @@ const kebili =  [
   <label for="club">Gouvernement</label>
   <div class="input-select">
                   <select data-trigger="" onChange={changeSelectOptionHandler} class="form-select" name="gouvernement">
-                  <option></option>
+                  <option>Gouvernement</option>
                   <option>Ariana</option>
                 <option>Béja</option>
                 <option >Ben Arous</option>
@@ -703,6 +693,7 @@ const kebili =  [
   <div class="input-select">
                   <select data-trigger="" class="form-select"name="region"onChange={changeSelectOptionHandlerregion}
                  >
+                  <option>Région</option>
                         {
               /** This is where we have used our options variable */
               options
@@ -714,7 +705,7 @@ const kebili =  [
   <div class="form-group ">
 
     <label for="exampleFormControlFile1">Logo</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="logo" onChange={Logohandler}/>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="logo" onChange={(e)=>setLogo(e.target.files[0])}/>
   
   </div>
  

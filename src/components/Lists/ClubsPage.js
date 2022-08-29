@@ -119,7 +119,7 @@ const rows = clubs.map((c) => {
     gouvernement: c.Gouvernement,
     emplacement:c.Emplacement,
     temps:c.Temps,
-    région:c.Région,
+    région:c.Region,
     logo:c.Logo,
     activité:c.Activite
     
