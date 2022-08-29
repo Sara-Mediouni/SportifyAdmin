@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Dashboard.css'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -11,7 +11,25 @@ import {ImUsers} from 'react-icons/im';
 import {MdRoom} from 'react-icons/md';
 import {SiClubhouse} from 'react-icons/si';
 import Sallessection from './Sallessection';
+import axios from 'axios';
 export default function Dashbord() {
+  const [clubs, setClubs] = React.useState([{id: 0}]);
+  const [num, setNum] = React.useState(null);
+  const show=()=>{
+    axios.get("http://localhost:3000/api/club/")
+     .then(response => {
+       const clubs = response.data;
+       setClubs(clubs);
+       setNum(clubs.length)
+     })
+}
+useEffect(() => {
+  show();
+  console.log(clubs)
+ 
+  
+
+}, []);
   return (
     <div class="container">
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -28,7 +46,7 @@ export default function Dashbord() {
           }}
         >
          <h1 className='gridtitle'>Clubs</h1>
-         <h1 className='inf'>500</h1>
+         <h1 className='inf'>{num}</h1>
          <i className='icon'><SiClubhouse /></i>
         </Paper>
       </Grid>

@@ -37,7 +37,7 @@ export default function Sallessection() {
         
       </TableBody>
     </Table>
-    <a class="linkplus">Plus</a>
+    <a class="linkplus" href="/salles">Plus</a>
     </div>
   )
 }
