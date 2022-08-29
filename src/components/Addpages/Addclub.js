@@ -99,7 +99,7 @@ formdata.append("Logo", logo);
 formdata.append("Emplacement",emplacement);
 for (let i = 0; i < activites.length; i++) {   
   formdata.append("Activite[]",(activites[i].activite));}
-  formdata.append("Temps",JSON.stringify(temp));
+  formdata.append("Temps[]",JSON.stringify(temp));
   
    
 formdata.append("Nom_entren",nom_entraineur);
