@@ -5,6 +5,7 @@ export default function Addnews() {
   const [titre, setTitre] =useState(null);
   const [description, setDescription] =useState(null);
   const [image, setImage] =useState(null);
+  const [ordre, setOrdre] =useState(null);
 
 
   const Imagehandler=(e)=>{
@@ -16,7 +17,7 @@ export default function Addnews() {
 formdata.append("Titre",titre);
 formdata.append("Description", description);
 formdata.append("Image",image);
-    
+formdata.append("Ordre",ordre); 
 
 
 var requestOptions = {
@@ -62,7 +63,11 @@ alert("News added !")})
     <textarea type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setDescription(e.target.value)}/>
  
   </div>
-  
+  <div class="form-group ">
+    <label for="club">Ordre</label>
+    <textarea type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setOrdre(e.target.value)}/>
+ 
+  </div>
 <div class="form-group ">
 
 <label for="exampleFormControlFile1">Image</label>

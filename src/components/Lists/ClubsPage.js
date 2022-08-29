@@ -20,8 +20,8 @@ import { Avatar } from '@mui/material';
 export default function ClubsPage() {
   const [selected, setSelected] = React.useState("");
   const [clubs, setClubs] = React.useState([{id: 0}]);
-  const [queryregion, setqueryregion] = React.useState("");
-  const [querygouv, setquerygouv] = React.useState("");
+  const [queryregion, setqueryregion] = React.useState(null);
+  const [querygouv, setquerygouv] = React.useState(null);
   /** Function that will set different values to state variable
    * based on which dropdown is selected
    */
@@ -118,11 +118,7 @@ const rows = clubs.map((c) => {
     nom:c.Nomclub,
     gouvernement: c.Gouvernement,
     emplacement:c.Emplacement,
-    temps:c.Temps.map((t)=>{
-      return(
-        t.Jours+" "+t.Horaire+"\r"
-      )
-    }),
+    temps:c.Temps,
     région:c.Région,
     logo:c.Logo,
     activité:c.Activite
@@ -587,6 +583,14 @@ const kebili =  [
   if (type) {
     options = type.map((el) => <option key={el}>{el}</option>);
   }
+  const find=()=>{
+    
+    axios.get("http://localhost:3000/api/club/findgouvernement/"+querygouv+"/"+queryregion)
+    .then(response => {
+      const clubs = response.data;
+      setClubs(clubs)
+      console.log(clubs)
+    })}
   const deleteClub=async(id)=>{ 
     
     try {
@@ -605,7 +609,7 @@ const kebili =  [
   const show=()=>{
      axios.get("http://localhost:3000/api/club/")
       .then(response => {
-        const clubs = response.data.filter((v)=> v.Region.indexOf(queryregion) != -1&&v.Region.indexOf(querygouv) != -1 );
+        const clubs = response.data;
         setClubs(clubs)
       })
  }
@@ -638,7 +642,7 @@ const kebili =  [
                        
 
                             <div className="container-lg">
-                            <form style={{marginLeft:'10%'}}>
+                            <form onSubmit={(e)=>{e.preventDefault();find()}} style={{marginLeft:'10%'}}>
         <div className="inner-form">
           <div className="basic-search">
             <div className="input-field">
@@ -705,7 +709,7 @@ const kebili =  [
                   <span>108 </span>résultats</div>
                 <div className="group-btn">
                   <button className="btn-delete" id="delete">RESET</button>
-                  <button className="btn-search" >Rechercher</button>
+                  <button  type="submit" className="btn-search" >Rechercher</button>
                 </div>
               </div>
             </div>

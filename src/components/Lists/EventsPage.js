@@ -50,6 +50,12 @@ export default function EventsPage() {
       editable: true,
     },
     {
+      field: 'ordre',
+      headerName: 'Ordre',
+      width: 150,
+      editable: true,
+    },
+    {
       field: 'image',
       headerName: 'Image',
       width: 150,
@@ -87,7 +93,8 @@ const rows = events.map((e) => {
     id:e.id,
     titre:e.Titre,
     description: e.Description,
-    image:e.Image
+    image:e.Image,
+    ordre:e.Ordre
   };});
   /** Different arrays for different dropdowns */
   const ariana = [

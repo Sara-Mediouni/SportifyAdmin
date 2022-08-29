@@ -49,6 +49,12 @@ const columns: GridColDef[] = [
     editable: true,
   },
   {
+    field: 'ordre',
+    headerName: 'Ordre',
+    width: 150,
+    editable: true,
+  },
+  {
     field: 'image',
     headerName: 'Image',
     width: 150,
@@ -87,7 +93,8 @@ const rows = news.map((n) => {
     id:n.id,
     titre:n.Titre,
     description: n.Description,
-  image:n.Image
+  image:n.Image,
+  ordre:n.Ordre
   };});
   /** Different arrays for different dropdowns */
   const ariana = [
