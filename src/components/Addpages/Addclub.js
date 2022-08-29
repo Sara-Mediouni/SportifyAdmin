@@ -643,7 +643,7 @@ const kebili =  [
               <input type="text" style={{height:'40px'}} className="input-control form-control" name="Horaire" value={element.Horaire || ""} onChange={e => handleChangeTemps(index,e)} />
               {
                 index ? 
-                 <span> <button style={{border:'none',backgroundColor:'lightgray',height:'40px'}} type="button"   className="deletebutton input-group-append form-control" onClick={() => removeTemps(index)}>Remove</button> </span>
+                 <span> <button  type="button"   className="deletebutton input-group-append form-control" onClick={() => removeTemps(index)}>Remove</button> </span>
                 : null
               }
             </div>
