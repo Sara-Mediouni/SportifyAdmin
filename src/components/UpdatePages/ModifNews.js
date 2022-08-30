@@ -17,7 +17,7 @@ export default function ModifNews() {
           formdata.append("Titre",titre);
           formdata.append("Description", description);
           formdata.append("Image",image);
-          
+          formdata.append("Ordre",ordre)
           var requestOptions = {
             method: 'PUT',
             body: formdata,

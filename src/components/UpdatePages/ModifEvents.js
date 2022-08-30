@@ -8,7 +8,7 @@ export default function ModifEvents(props) {
   const [image, setImage] =useState(null);
   const [date, setDate] =useState(null);
   const [horaire, setHoraire] =useState(null);
-
+  const [ordre, setOrdre] =useState(null);
   const { id } = useParams();
 
   const Imagehandler=(e)=>{
@@ -21,6 +21,7 @@ export default function ModifEvents(props) {
         formdata.append("Image",image);
         formdata.append("Date",date);  
 formdata.append("Horaire",horaire); 
+formdata.append("Ordre",ordre)
         var requestOptions = {
           method: 'PUT',
           body: formdata,
@@ -62,6 +63,11 @@ formdata.append("Horaire",horaire);
   <div class="form-group ">
     <label for="club">Description</label>
     <textarea type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setDescription(e.target.value)}/>
+ 
+  </div>
+  <div class="form-group ">
+    <label for="club">Ordre</label>
+    <input pattern="[0-200]*" type="number" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setOrdre(e.target.value)}/>
  
   </div>
   <div class="form-group ">
