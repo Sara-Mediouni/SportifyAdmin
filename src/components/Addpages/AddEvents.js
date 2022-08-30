@@ -31,7 +31,7 @@ redirect: 'follow'
 fetch("http://localhost:3000/api/event/storeevent", requestOptions)
 .then(response => response.text())
 .then(result => {console.log(result);
-alert("Event added !")})
+alert("Evènement ajouté avec succès !")})
 .catch(error => console.log('error', error));
    }
   return (

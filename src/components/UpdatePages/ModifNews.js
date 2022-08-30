@@ -27,7 +27,7 @@ export default function ModifNews() {
           fetch("http://localhost:3000/api/news/updatenews/"+id, requestOptions)
             .then(response => response.text())
             .then(result => {console.log(result)
-            alert("News modifié !")})
+            alert("actualité modifiée !")})
             .catch(error => console.log('error', error));
   }
   return (

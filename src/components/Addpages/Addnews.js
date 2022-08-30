@@ -29,7 +29,7 @@ redirect: 'follow'
 fetch("http://localhost:3000/api/news/newsevent", requestOptions)
 .then(response => response.text())
 .then(result => {console.log(result);
-alert("News added !")})
+alert("Actualité ajoutée avec succès !")})
 .catch(error => console.log('error', error));
    }
   return (

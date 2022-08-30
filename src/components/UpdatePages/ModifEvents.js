@@ -30,7 +30,7 @@ formdata.append("Horaire",horaire);
         fetch("http://localhost:3000/api/event/updateevent/"+id, requestOptions)
           .then(response => response.text())
           .then(result => {console.log(result)
-          alert("Event modifié !")})
+          alert("Evènement modifié !")})
           .catch(error => console.log('error', error));
 }
   return (

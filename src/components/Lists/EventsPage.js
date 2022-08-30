@@ -65,7 +65,7 @@ export default function EventsPage() {
     
     {
       field: 'horaire',
-      headerName: 'Date',
+      headerName: 'Horaire',
       width: 150,
       editable: true,
     },
