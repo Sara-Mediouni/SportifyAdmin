@@ -6,7 +6,8 @@ export default function AddEvents() {
   const [description, setDescription] =useState(null);
   const [image, setImage] =useState(null);
   const [ordre, setOrdre] =useState(null);
-
+  const [date, setDate] =useState(null);
+  const [horaire, setHoraire] =useState(null);
 
   const Imagehandler=(e)=>{
    
@@ -18,7 +19,8 @@ formdata.append("Titre",titre);
 formdata.append("Description", description);
 formdata.append("Image",image);
 formdata.append("Ordre",ordre);   
-
+formdata.append("Date",date);  
+formdata.append("Horaire",horaire);  
 
 var requestOptions = {
 method: 'POST',
@@ -63,10 +65,20 @@ alert("Event added !")})
     <textarea type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setDescription(e.target.value)}/>
  
   </div>
+  <div class="form-group ">
+    <label for="club">Date</label>
+    <textarea type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setDate(e.target.value)}/>
+ 
+  </div>
+  <div class="form-group ">
+    <label for="club">Horaire</label>
+    <textarea type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setHoraire(e.target.value)}/>
+ 
+  </div>
   
   <div class="form-group ">
     <label for="club">Ordre</label>
-    <input pattern="[0-9]*" type="number" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setOrdre(e.target.value)}/>
+    <input pattern="[0-200]*" type="number" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setOrdre(e.target.value)}/>
  
   </div>
   <div class="form-group ">
