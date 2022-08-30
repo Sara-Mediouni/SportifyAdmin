@@ -65,7 +65,7 @@ alert("News added !")})
   </div>
   <div class="form-group ">
     <label for="club">Ordre</label>
-    <textarea type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setOrdre(e.target.value)}/>
+    <input pattern="[0-9]*" type="number" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setOrdre(e.target.value)}/>
  
   </div>
 <div class="form-group ">

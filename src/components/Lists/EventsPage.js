@@ -55,6 +55,20 @@ export default function EventsPage() {
       width: 150,
       editable: true,
     },
+    
+    {
+      field: 'date',
+      headerName: 'Date',
+      width: 150,
+      editable: true,
+    },
+    
+    {
+      field: 'horaire',
+      headerName: 'Date',
+      width: 150,
+      editable: true,
+    },
     {
       field: 'image',
       headerName: 'Image',
@@ -94,7 +108,9 @@ const rows = events.map((e) => {
     titre:e.Titre,
     description: e.Description,
     image:e.Image,
-    ordre:e.Ordre
+    ordre:e.Ordre,
+    date:e.Date,
+    horaire:e.Horaire
   };});
   /** Different arrays for different dropdowns */
   const ariana = [
@@ -671,7 +687,7 @@ const kebili =  [
             <div className="row third">
               <div className="input-field">
                 <div className="result-count">
-                  <span>108 </span>résultats</div>
+                  <span>{events.length} </span>résultats</div>
                 <div className="group-btn">
                   <button className="btn-delete" id="delete">RESET</button>
                   <button className="btn-search" >Rechercher</button>
