@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react'
-import SideNav from '../Sidenav/Sidenav'
 import '../Sidenav/Sidenav.css'
-import {
-  
-  Link
-} from "react-router-dom";
+
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef} from '@mui/x-data-grid';
 
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -15,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import axios from 'axios';
-import { getRowIdFromRowModel } from '@mui/x-data-grid/hooks/features/rows/gridRowsUtils';
+
 import { Avatar } from '@mui/material';
 export default function EventsPage() {
   const [selected, setSelected] = React.useState("");
@@ -70,6 +66,20 @@ export default function EventsPage() {
       editable: true,
     },
     {
+      field: 'région',
+      headerName: 'Région',
+      sortable: false,
+      width: 120,
+     
+    },
+    {
+      field: 'gouvernement',
+      headerName: 'Gouvernement',
+      sortable: false,
+      width: 120,
+     
+    },
+    {
       field: 'image',
       headerName: 'Image',
       width: 150,
@@ -106,6 +116,8 @@ const rows = events.map((e) => {
    
     id:e.id,
     titre:e.Titre,
+    gouvernement: e.Gouvernement,
+    région:e.Region,
     description: e.Description,
     image:e.Image,
     ordre:e.Ordre,
@@ -700,7 +712,7 @@ const kebili =  [
       <div className="row">
                    
                     <div className="col-sm-2">
-<a className="add" href="/addevents"><AddIcon style={{ fontSize:'50px'}}/></a>
+<a className="add" href="/addEvents"><AddIcon style={{ fontSize:'50px'}}/></a>
                     
                 </div>
                 </div>

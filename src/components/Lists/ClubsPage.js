@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react'
-import SideNav from '../Sidenav/Sidenav'
+
 import '../Sidenav/Sidenav.css'
-import {
-  
-  Link
-} from "react-router-dom";
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -15,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import axios from 'axios';
-import { getRowIdFromRowModel } from '@mui/x-data-grid/hooks/features/rows/gridRowsUtils';
+
 import { Avatar } from '@mui/material';
 export default function ClubsPage() {
   const [selected, setSelected] = React.useState("");

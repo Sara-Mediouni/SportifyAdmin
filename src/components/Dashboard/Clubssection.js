@@ -19,7 +19,7 @@ useEffect(() => {
   show();
   console.log(clubs)
 
-}, []);
+});
 
   return (
     <div >

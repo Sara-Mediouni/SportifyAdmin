@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
-
+import '../Sidenav/Sidenav.css'
 export default function ModifNews() {
     
     const [titre, setTitre] =useState(null);
@@ -75,7 +75,9 @@ export default function ModifNews() {
 </div>
 
 
-<button type="submit" class="btn-2 d-flex justify-content-center text-center">Sauvegarder</button>
+<div class="row" style={{marginTop:'170px'}}>
+  <a href="/news"class="btn justify-content-center col-6" >Retour</a>
+  <button type="submit" class="btn justify-content-center col-6" >Sauvegarder</button></div>
 </form>
 </div>
 

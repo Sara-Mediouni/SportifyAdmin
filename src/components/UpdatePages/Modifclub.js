@@ -1,9 +1,8 @@
-import SideNav from "../Sidenav/Sidenav";
+
   import React from 'react'
   import '../Sidenav/Sidenav.css'
-import { useState,useEffect } from "react";
-import AddIcon from '@mui/icons-material/Add';
- import axios from "axios";   
+import { useState } from "react";
+
 import { useParams } from "react-router-dom";
     export default function Modifclub() {
       const { id } = useParams();
@@ -18,8 +17,7 @@ import { useParams } from "react-router-dom";
       const [temp, setTemps] =useState([{Jours:"",Horaire:""}]);
       const [logo,setLogo]=useState(null);
       const [numtel,setNumTel]=useState(null);
-      let l=[];
-      const [clicked,setClicked]=useState(false);
+      
       const handleChange=(e)=>{
         const value=e.target.value;
         setClub({...club,[e.target.name]:value});
@@ -27,15 +25,7 @@ import { useParams } from "react-router-dom";
 
       }
       //console.log(activite.split(" "))
-      const activiteHandler=(e)=>{
-         handleChange(e);
-         const ch=e.target.value;
-        l=[ch.split(" ")];
-         
-      //setActivite(l);
-         
-        
-      }
+    
       
 
 
@@ -101,7 +91,7 @@ import { useParams } from "react-router-dom";
       for (let i = 0; i < activites.length; i++) {   
         formdata.append("Activite[]",(activites[i].activite));}
         formdata.append("Temps[]",JSON.stringify(temp));
-        
+        formdata.append("Num_tel",numtel)
          
       formdata.append("Nom_entren",nom_entraineur);
       formdata.append("Gouvernement", gouvernement);
@@ -714,7 +704,9 @@ const kebili =  [
   
   </div>
  
-  <button type="submit" class="btn d-flex justify-content-center" >Sauvegarder</button>
+  <div class="row" style={{marginTop:'100px'}}>
+  <a href="/clubs"class="btn justify-content-center col-6" >Retour</a>
+  <button type="submit" class="btn justify-content-center col-6" >Sauvegarder</button></div>
 </form>
                                </div>
     

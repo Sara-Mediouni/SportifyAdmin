@@ -11,11 +11,9 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import './Sidenav.css';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import CarRepairIcon from '@mui/icons-material/CarRepair';
+
 import {GiTennisBall} from 'react-icons/gi'
 import { mainListItems, secondaryListItems } from './listitems';
 
@@ -24,33 +22,6 @@ import { mainListItems, secondaryListItems } from './listitems';
 
 
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        My Parc
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-const theme = createTheme({
-  status: {
-    danger: '#e53e3e',
-  },
-  palette: {
-    primary: {
-      main: '#097425',
-      darker: '#053e85',
-    },
-    neutral: {
-      main: '#64748B',
-      contrastText: '#fff',
-    },
-  },
-});
 const drawerWidth = 300;
 
 const AppBar = styled(MuiAppBar, {
@@ -154,7 +125,7 @@ toggleDrawer = () => {
       sx={{ flexGrow: 1 }}
       
       >
-       <a id="titre" href="/home" ><i><GiTennisBall style={{color:'#85D236'}}/></i>Sportif</a>
+       <a id="titre" href="/" ><i><GiTennisBall style={{color:'#85D236'}}/></i>Sportif</a>
       </Typography>
       
 

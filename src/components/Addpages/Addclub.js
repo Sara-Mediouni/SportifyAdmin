@@ -1,9 +1,8 @@
-import SideNav from "../Sidenav/Sidenav";
+
   import React from 'react'
   import '../Sidenav/Sidenav.css'
-import { useState,useEffect } from "react";
-import AddIcon from '@mui/icons-material/Add';
- import axios from "axios";   
+import { useState} from "react";
+
     export default function Addclub() {
       const [selected, setSelected] =useState("");
       const [club, setClub] =useState(null);
@@ -16,23 +15,13 @@ import AddIcon from '@mui/icons-material/Add';
       const [temp, setTemps] =useState([{Jours:"",Horaire:""}]);
       const [logo,setLogo]=useState(null);
       const [numtel,setNumTel]=useState(null);
-      let l=[];
-      const [clicked,setClicked]=useState(false);
+     
+     
       const handleChange=(e)=>{
         const value=e.target.value;
         setClub({...club,[e.target.name]:value});
        
 
-      }
-      //console.log(activite.split(" "))
-      const activiteHandler=(e)=>{
-         handleChange(e);
-         const ch=e.target.value;
-        l=[ch.split(" ")];
-         
-      //setActivite(l);
-         
-        
       }
       
 
@@ -100,8 +89,7 @@ formdata.append("Emplacement",emplacement);
 for (let i = 0; i < activites.length; i++) {   
   formdata.append("Activite[]",(activites[i].activite));}
   formdata.append("Temps[]",JSON.stringify(temp));
-  
-   
+  formdata.append("Num_tel",numtel);
 formdata.append("Nom_entren",nom_entraineur);
 formdata.append("Gouvernement", gouvernement);
 formdata.append("Region", region);
@@ -709,8 +697,9 @@ const kebili =  [
     <input type="file" class="form-control-file" id="exampleFormControlFile1" name="logo" onChange={(e)=>setLogo(e.target.files[0])}/>
   
   </div>
- 
-  <button type="submit" class="btn d-flex justify-content-center" >Sauvegarder</button>
+ <div class="row" style={{marginTop:'100px'}}>
+  <a href="/clubs"class="btn justify-content-center col-6" >Retour</a>
+  <button type="submit" class="btn justify-content-center col-6" >Sauvegarder</button></div>
 </form>
                                </div>
     
