@@ -588,7 +588,7 @@ const kebili =  [
     
     
                                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                    <h1 class="h3 mb-0 title">Ajout d'un club</h1>
+                                    <h1 class="h3 mb-0 title">Modification d'un club</h1>
     
                                 </div>
                                <div class="">
