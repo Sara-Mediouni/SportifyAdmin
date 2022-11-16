@@ -66,6 +66,13 @@ const columns: GridColDef[] = [
    
   },
   {
+    field: 'num_tel',
+    headerName: 'Num_tel',
+    sortable: false,
+    width: 120,
+   
+  },
+  {
     field: 'logo',
     headerName: 'Logo',
     sortable: false,
@@ -117,7 +124,8 @@ const rows = clubs.map((c) => {
     temps:c.Temps,
     région:c.Region,
     logo:c.Logo,
-    activité:c.Activite
+    activité:c.Activite,
+    num_tel:c.Num_tel
     
   };});
   /** Different arrays for different dropdowns */

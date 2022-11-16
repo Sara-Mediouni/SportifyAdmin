@@ -16,8 +16,8 @@ import { Avatar } from '@mui/material';
 export default function EventsPage() {
   const [selected, setSelected] = React.useState("");
   const [events, setEvents] = React.useState([{id: 0}]);
-  const [queryregion, setqueryregion] = React.useState("");
-  const [querygouv, setquerygouv] = React.useState("");
+  const [queryregion, setqueryregion] = React.useState(null);
+  const [querygouv, setquerygouv] = React.useState(null);
   /** Function that will set different values to state variable
    * based on which dropdown is selected
    */
@@ -589,6 +589,14 @@ const kebili =  [
       const events = response.data;
       setEvents(events)
   })};
+  const find=()=>{
+    
+    axios.get("http://localhost:3000/api/event/find/"+querygouv+"/"+queryregion)
+    .then(response => {
+      const e = response.data;
+      setEvents(e)
+      console.log(e)
+    })}
   const deleteEvent=async(id)=>{ 
     
     try {
@@ -635,7 +643,7 @@ const kebili =  [
                        
 
                             <div className="container-lg">
-                            <form style={{marginLeft:'10%'}}>
+                            <form onSubmit={(e)=>{e.preventDefault();find()}} style={{marginLeft:'10%'}}>
         <div className="inner-form">
           <div className="basic-search">
             <div className="input-field">
@@ -702,7 +710,7 @@ const kebili =  [
                   <span>{events.length} </span>résultats</div>
                 <div className="group-btn">
                   <button className="btn-delete" id="delete">RESET</button>
-                  <button className="btn-search" >Rechercher</button>
+                  <button type="submit" className="btn-search" >Rechercher</button>
                 </div>
               </div>
             </div>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import '../Sidenav/Sidenav.css'
 export default function ModifNews() {
-    
+  const [news, setnews] =useState([{id:0}]);
     const [titre, setTitre] =useState(null);
     const [description, setDescription] =useState(null);
     const [image, setImage] =useState(null);
@@ -30,6 +30,27 @@ export default function ModifNews() {
             alert("actualité modifiée !")})
             .catch(error => console.log('error', error));
   }
+  const defaultvalues=()=>{
+    
+
+
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetch("http://localhost:3000/api/news/shownews/"+id, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        
+     setnews(result)})
+      .catch(error => console.log('error', error));
+       }
+       useEffect(() => {
+        defaultvalues();
+        
+      
+      },[]);
   return (
     <div id="wrapper">
 
@@ -53,24 +74,24 @@ export default function ModifNews() {
 
 <div class="form-group ">
 <label for="club">Titre</label>
-<input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le titre"onChange={(e)=>setTitre(e.target.value)}/>
+<input type="text"defaultValue={news.Titre} class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le titre"onChange={(e)=>setTitre(e.target.value)}/>
 
 </div>
 <div class="form-group ">
 <label for="club">Description</label>
-<textarea type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setDescription(e.target.value)}/>
+<textarea type="text" defaultValue={news.Description}class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setDescription(e.target.value)}/>
 
 </div>
 <div class="form-group ">
-<label for="club">Ordre</label>
-<input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le titre"onChange={(e)=>setOrdre(e.target.value)}/>
-
-</div>
+    <label for="club">Ordre</label>
+    <input pattern="[0-9]*" type="number" defaultValue={news.Ordre}class="form-control" id="club" aria-describedby="Help" placeholder="Entrer l'ordre'"onChange={(e)=>setOrdre(e.target.value)}/>
+ 
+  </div>
 
 <div class="form-group ">
 
 <label for="exampleFormControlFile1">Image</label>
-<input type="file" class="form-control-file" id="exampleFormControlFile1"onChange={Imagehandler}/>
+<input type="file" defaultValue={news.Image}class="form-control-file" id="exampleFormControlFile1"onChange={Imagehandler}/>
 
 </div>
 

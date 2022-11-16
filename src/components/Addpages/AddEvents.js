@@ -494,7 +494,7 @@ export default function AddEvents() {
     formdata.append("Horaire", horaire);
     formdata.append("Gouvernement", gouvernement);
     formdata.append("Region", region);
-    
+    formdata.append('Image',image);
     var requestOptions = {
       method: 'POST',
       body: formdata,

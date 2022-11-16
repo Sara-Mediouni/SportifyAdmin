@@ -125,7 +125,7 @@ toggleDrawer = () => {
       sx={{ flexGrow: 1 }}
       
       >
-       <a id="titre" href="/" ><i><GiTennisBall style={{color:'#85D236'}}/></i>Sportif</a>
+       <a id="titre" href="/" ><i><GiTennisBall style={{color:'#85D236'}}/></i>Sportify</a>
       </Typography>
       
 

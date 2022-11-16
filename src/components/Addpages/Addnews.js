@@ -26,7 +26,7 @@ body: formdata,
 redirect: 'follow'
 };
 
-fetch("http://localhost:3000/api/news/newsevent", requestOptions)
+fetch("http://localhost:3000/api/news/storenews", requestOptions)
 .then(response => response.text())
 .then(result => {console.log(result);
 alert("Actualité ajoutée avec succès !")})

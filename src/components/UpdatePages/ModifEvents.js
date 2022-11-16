@@ -486,7 +486,7 @@ export default function ModifEvents(props) {
    }
 
    const defaultvalues=()=>{
-    var formdata = new FormData();
+    
 
 
 var requestOptions = {
@@ -530,9 +530,10 @@ fetch("http://localhost:3000/api/event/showevents/"+id, requestOptions)
 
 useEffect(() => {
   defaultvalues();
+  console.log(event.Gouvernement)
   
 
-},[]);
+},[id]);
 
   return (
     <div id="wrapper">
@@ -569,7 +570,7 @@ useEffect(() => {
   <div class="form-group ">
   <label for="club">Gouvernement</label>
   <div class="input-select">
-                  <select defaultValue="Sousse"data-trigger="" defaultValue={event.Gouvernement}onChange={changeSelectOptionHandler} class="form-select" name="gouvernement">
+                  <select key={event.Gouvernement}defaultValue={event.Gouvernement}onChange={changeSelectOptionHandler} class="form-select" name="gouvernement">
                   <option>Gouvernement</option>
                   <option>Ariana</option>
                 <option>Béja</option>
@@ -601,7 +602,7 @@ useEffect(() => {
   <div class="form-group">
   <label for="club">Région</label>
   <div class="input-select">
-                  <select data-trigger="" defaultValue={event.Region}class="form-select"name="region"onChange={changeSelectOptionHandlerregion}
+                  <select key={event.Region} defaultValue={event.Region}class="form-select"name="region"onChange={changeSelectOptionHandlerregion}
                  >
                   <option>Région</option>
                         {
@@ -614,17 +615,17 @@ useEffect(() => {
   </div>
   <div class="form-group ">
     <label for="club">Ordre</label>
-    <input pattern="[0-9]*" type="number" defaultValue={event.Ordre}class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setOrdre(e.target.value)}/>
+    <input pattern="[0-9]*" type="number" defaultValue={event.Ordre}class="form-control" id="club" aria-describedby="Help" placeholder="Entrer l'ordre'"onChange={(e)=>setOrdre(e.target.value)}/>
  
   </div>
   <div class="form-group ">
     <label for="club">Date</label>
-    <textarea type="text" class="form-control" id="club" defaultValue={event.Date}aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setDate(e.target.value)}/>
+    <textarea type="text" class="form-control" id="club" defaultValue={event.Date}aria-describedby="Help" placeholder="Entrer la date"onChange={(e)=>setDate(e.target.value)}/>
  
   </div>
   <div class="form-group ">
     <label for="club">Horaire</label>
-    <textarea type="text" class="form-control" defaultValue={event.Horaire}id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setHoraire(e.target.value)}/>
+    <textarea type="text" class="form-control" defaultValue={event.Horaire}id="club" aria-describedby="Help" placeholder="Entrer l'horaire'"onChange={(e)=>setHoraire(e.target.value)}/>
  
   </div>
  
