@@ -15,17 +15,25 @@ import axios from 'axios';
 export default function Dashbord() {
   const [clubs, setClubs] = React.useState([{id: 0}]);
   const [num, setNum] = React.useState(null);
-  const show=()=>{
-    axios.get("http://localhost:3000/api/club/")
+  /*const show=()=>{
+    axios.get("http://localhost:5197/api/club/")
      .then(response => {
        const clubs = response.data;
        setClubs(clubs);
        setNum(clubs.length)
      })
+}*/
+const show=()=>{
+  axios.get("http://localhost:3000/api/club/")
+     .then(response => {
+       const clubs = response.data;
+       setClubs(clubs);
+       setNum(clubs.length)
+     })
+     .catch(err => console.error(err));
 }
 useEffect(() => {
   show();
-  console.log(clubs)
  
   
 

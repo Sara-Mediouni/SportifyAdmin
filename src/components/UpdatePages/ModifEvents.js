@@ -506,14 +506,22 @@ fetch("http://localhost:3000/api/event/showevents/"+id, requestOptions)
     setImage(e.target.files[0]);}
     const update=()=>{
         var formdata = new FormData();
-        formdata.append("Titre",titre);
-        formdata.append("Description", description);
-        formdata.append("Image",image);
-        formdata.append("Date",date);  
-        formdata.append("Horaire",horaire); 
-        formdata.append("Ordre",ordre);
-        formdata.append("Gouvernement", gouvernement);
-        formdata.append("Region", region);
+        if (titre!==null)
+        {formdata.append("Titre",titre);}
+        if (description!==null)
+        {formdata.append("Description", description);}
+        if (image!==null)
+       { formdata.append("Image",image);}
+       if (date!==null)
+        {formdata.append("Date",date); } 
+        if (horaire!==null)
+        {formdata.append("Horaire",horaire);} 
+        if (ordre!==null)
+        {formdata.append("Ordre",ordre);}
+        if (gouvernement!==null)
+        {formdata.append("Gouvernement", gouvernement);}
+        if (region!==null)
+       { formdata.append("Region", region);}
         var requestOptions = {
           method: 'PUT',
           body: formdata,

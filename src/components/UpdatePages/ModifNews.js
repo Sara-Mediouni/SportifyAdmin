@@ -14,10 +14,16 @@ export default function ModifNews() {
       setImage(e.target.files[0]);}
       const update=()=>{
           var formdata = new FormData();
-          formdata.append("Titre",titre);
-          formdata.append("Description", description);
-          formdata.append("Image",image);
-          formdata.append("Ordre",ordre)
+          if (titre!==null)
+         { formdata.append("Titre",titre);}
+         if (description!==null)
+          { formdata.append("Description",description);}
+          if (image!==null)
+            { formdata.append("Image",image);}
+            if (ordre!==null)
+              { formdata.append("Ordre",ordre);}
+          
+         
           var requestOptions = {
             method: 'PUT',
             body: formdata,
@@ -79,19 +85,19 @@ export default function ModifNews() {
 </div>
 <div class="form-group ">
 <label for="club">Description</label>
-<textarea type="text" defaultValue={news.Description}class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setDescription(e.target.value)}/>
+<textarea type="text" defaultValue={news.Description} class="form-control" id="club" aria-describedby="Help" placeholder="Entrer la description"onChange={(e)=>setDescription(e.target.value)}/>
 
 </div>
 <div class="form-group ">
     <label for="club">Ordre</label>
-    <input pattern="[0-9]*" type="number" defaultValue={news.Ordre}class="form-control" id="club" aria-describedby="Help" placeholder="Entrer l'ordre'"onChange={(e)=>setOrdre(e.target.value)}/>
+    <input pattern="[0-9]*" type="number" defaultValue={news.Ordre} class="form-control" id="club" aria-describedby="Help" placeholder="Entrer l'ordre'"onChange={(e)=>setOrdre(e.target.value)}/>
  
   </div>
 
 <div class="form-group ">
 
 <label for="exampleFormControlFile1">Image</label>
-<input type="file" defaultValue={news.Image}class="form-control-file" id="exampleFormControlFile1"onChange={Imagehandler}/>
+<input type="file" defaultValue={news.Image} class="form-control-file" id="exampleFormControlFile1"onChange={Imagehandler}/>
 
 </div>
 

@@ -8,12 +8,21 @@ import Title from '../Assets/Title';
 import axios from 'axios';
 export default function Clubssection() {
   const [clubs, setClubs] = React.useState([{id: 0}]);
-  const show=()=>{
-    axios.get("http://localhost:3000/api/club/")
+ /* const show=()=>{
+    axios.get("http://localhost:5197/api/club/")
      .then(response => {
        const clubs = response.data;
        setClubs(clubs)
      })
+}*/
+const show=()=>{
+  axios.get("http://localhost:3000/api/club/")
+     .then(response => {
+       const clubs = response.data;
+       setClubs(clubs);
+    
+     })
+     .catch(err => console.error(err));
 }
 useEffect(() => {
   show();
@@ -49,7 +58,7 @@ useEffect(() => {
       <TableCell>{c.Region}</TableCell>
       <TableCell>{c.Gouvernement}</TableCell>
       <TableCell>{c.Nom_entren}</TableCell>
-      <TableCell>{c.Activite}</TableCell>
+      <TableCell>{c.Activite+" "}</TableCell>
       </TableRow>)
     
      })} 

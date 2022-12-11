@@ -573,7 +573,7 @@ const kebili =  [
   </div>
   <div class="form-group ">
     <label for="club">Adresse</label>
-    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="emplacement" onChange={(e)=> setEmplacement(e.target.value)}/>
+    <input type="text" class="form-control" id="club" aria-describedby="Help" placeholder="Entrer l'adresse" name="emplacement" onChange={(e)=> setEmplacement(e.target.value)}/>
  
   </div>
   <div class="form-group ">
@@ -717,7 +717,7 @@ const kebili =  [
     
                 </div> 
     
-        </div >
+        </div>
       )
     }
     

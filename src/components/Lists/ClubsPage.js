@@ -16,8 +16,8 @@ import { Avatar } from '@mui/material';
 export default function ClubsPage() {
   const [selected, setSelected] = React.useState("");
   const [clubs, setClubs] = React.useState([{id: 0}]);
-  const [queryregion, setqueryregion] = React.useState(null);
-  const [querygouv, setquerygouv] = React.useState(null);
+  const [queryregion, setqueryregion] = React.useState("null");
+  const [querygouv, setquerygouv] = React.useState("null");
   /** Function that will set different values to state variable
    * based on which dropdown is selected
    */
@@ -81,7 +81,7 @@ const columns: GridColDef[] = [
       return(
         
        
-        <Avatar src={"http://localhost:3000/images/"+params.value}/>
+        <Avatar type="file" src={"http://localhost:3000/images/"+params.value}/>
         
       )
     }
@@ -118,10 +118,10 @@ const rows = clubs.map((c) => {
   return {
    
     id:c.id,
-    nom:c.Nomclub,
+    nom:c.Nom_club,
     gouvernement: c.Gouvernement,
     emplacement:c.Emplacement,
-    temps:c.Temps,
+    temps:c.Temps?.map((t)=>{return t.Jours+" "+t.Horaire+" "}),
     région:c.Region,
     logo:c.Logo,
     activité:c.Activite,
@@ -598,7 +598,7 @@ const kebili =  [
   const deleteClub=async(id)=>{ 
     
     try {
-      const res=await axios.delete(`http://localhost:3000/api/club/delete/${id}`)
+      await axios.delete(`http://localhost:3000/api/club/delete/${id}`)
       .then(res=>{
  
         clubs = clubs.filter(item => item.id !== id);  

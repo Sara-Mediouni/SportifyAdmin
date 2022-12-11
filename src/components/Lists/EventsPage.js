@@ -16,8 +16,8 @@ import { Avatar } from '@mui/material';
 export default function EventsPage() {
   const [selected, setSelected] = React.useState("");
   const [events, setEvents] = React.useState([{id: 0}]);
-  const [queryregion, setqueryregion] = React.useState(null);
-  const [querygouv, setquerygouv] = React.useState(null);
+  const [queryregion, setqueryregion] = React.useState("null");
+  const [querygouv, setquerygouv] = React.useState("null");
   /** Function that will set different values to state variable
    * based on which dropdown is selected
    */

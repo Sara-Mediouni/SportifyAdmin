@@ -8,16 +8,16 @@ import { useParams } from "react-router-dom";
       const { id } = useParams();
       const [selected, setSelected] =useState("");
       const [club, setClub] =useState(null);
-      const [clubdefault, setdefault] =useState([{id:0}]);
-      const [nom_club, setNom] =useState(null);
-      const [emplacement, setEmplacement] =useState(null);
-      const [region, setRegion] =useState(null);
-      const [gouvernement, setGouvernement] =useState(null);
+      const [clubdefault, setdefault] =useState({id:0});
+      const [nom_club, setNom] =useState("");
+      const [emplacement, setEmplacement] =useState("");
+      const [region, setRegion] =useState("");
+      const [gouvernement, setGouvernement] =useState("");
       const [activites, setActivite] =useState([{activite:''}]);
-      const [nom_entraineur, setNomE] =useState(null);
+      const [nom_entraineur, setNomE] =useState("");
       const [temp, setTemps] =useState([{Jours:"",Horaire:""}]);
-      const [logo,setLogo]=useState(null);
-      const [numtel,setNumTel]=useState(null);
+      const [logo,setLogo]=useState("");
+      const [numtel,setNumTel]=useState("");
       
       const handleChange=(e)=>{
         const value=e.target.value;
@@ -69,7 +69,7 @@ import { useParams } from "react-router-dom";
       setTemps(Newtemps);
     }
   
-    let addTemps=()=> {
+   let addTemps=()=> {
       
         setTemps([...temp, { Jours: "", Horaire: "" }]);
      
@@ -86,17 +86,25 @@ import { useParams } from "react-router-dom";
  
     const update=()=>{
       var formdata = new FormData();
-      formdata.append("Nom_club",nom_club);
+      if (nom_club!=="")
+     { formdata.append("Nom_club",nom_club);}
       formdata.append("Logo", logo);
-      formdata.append("Emplacement",emplacement);
-      for (let i = 0; i < activites.length; i++) {   
-        formdata.append("Activite[]",(activites[i].activite));}
-        formdata.append("Temps[]",JSON.stringify(temp));
-        formdata.append("Num_tel",numtel)
-         
-      formdata.append("Nom_entren",nom_entraineur);
-      formdata.append("Gouvernement", gouvernement);
-      formdata.append("Region", region);
+      if (emplacement!=="")
+      {formdata.append("Emplacement",emplacement);}
+      if (activites!=="")
+      {for (let i = 0; i < activites.length; i++) {   
+        formdata.append("Activite[]",(activites[i].activite));}}
+        if (temp!=="")
+       { formdata.append("Temps[]",JSON.stringify(temp));}
+       if (numtel!=="")
+       { formdata.append("Num_tel",numtel)}
+         if (nom_entraineur!=="")
+      {formdata.append("Nom_entren",nom_entraineur);}
+      if (gouvernement!=="")
+      {formdata.append("Gouvernement", gouvernement);}
+      if (region!=="")
+      {
+      formdata.append("Region", region);}
       
       var requestOptions = {
         method: 'PUT',
@@ -561,10 +569,11 @@ const kebili =  [
         };
         
         fetch("http://localhost:3000/api/club/show/"+id, requestOptions)
-          .then(response => response.json())
+          .then(response => {console.log(response); return response.json();})
           .then(result => {
             
-         {setdefault(result)}})
+         setdefault(result);
+        })
           .catch(error => console.log('error', error));
            }
            useEffect(() => {
@@ -598,22 +607,22 @@ const kebili =  [
   
   <div class="form-group ">
     <label for="club">Nom du club</label>
-    <input type="text" defaultValue={clubdefault.Nom_club}class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le nom" name="nom_club" onChange={(e)=>setNom(e.target.value)}/>
+    <input type="text"  class="form-control" id="club" aria-describedby="Help" placeholder={clubdefault.nom_club} name="nom_club" onChange={(e)=>setNom(e.target.value)}/>
  
   </div>
   <div class="form-group ">
     <label for="club">Adresse</label>
-    <input type="text" class="form-control"defaultValue={clubdefault.Emplacement} id="club" aria-describedby="Help" placeholder="Entrer le nom" name="emplacement" onChange={(e)=> setEmplacement(e.target.value)}/>
+    <input type="text" class="form-control"  id="club" aria-describedby="Help" placeholder="Entrer le nom" name="emplacement" onChange={(e)=> setEmplacement(e.target.value)}/>
  
   </div>
   <div class="form-group ">
     <label for="club">Numéro du téléphone</label>
-    <input type="text" defaultValue={clubdefault.Num_tel}class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le numéro" name="num_tel" onChange={(e)=>setNumTel(e.target.value)}/>
+    <input type="text"  class="form-control" id="club" aria-describedby="Help" placeholder="Entrer le numéro" name="num_tel" onChange={(e)=>setNumTel(e.target.value)}/>
  
   </div>
   <div class="form-group ">
     <label for="club">Nom de l'entraîneur</label>
-    <input type="text" class="form-control"defaultValue={clubdefault.Nom_entren} id="club" aria-describedby="Help" placeholder="Entrer le nom" name="nom_entren" onChange={(e)=>setNomE(e.target.value)}/>
+    <input type="text" class="form-control"  id="club" aria-describedby="Help" placeholder="Entrer le nom" name="nom_entren" onChange={(e)=>setNomE(e.target.value)}/>
  
   </div>
   
@@ -678,7 +687,7 @@ const kebili =  [
   <div class="form-group ">
   <label for="club">Gouvernement</label>
   <div class="input-select">
-                  <select data-trigger="" key={clubdefault.Gouvernement}defaultValue={clubdefault.Gouvernement} onChange={changeSelectOptionHandler} class="form-select" name="gouvernement">
+                  <select data-trigger=""  onChange={changeSelectOptionHandler} class="form-select" name="gouvernement">
                   <option>Gouvernement</option>
                   <option>Ariana</option>
                 <option>Béja</option>
@@ -710,7 +719,7 @@ const kebili =  [
   <div class="form-group">
   <label for="club">Région</label>
   <div class="input-select">
-                  <select  data-trigger="" key={clubdefault.Region}defaultValue={clubdefault.Region} class="form-select"name="region"onChange={changeSelectOptionHandlerregion}
+                  <select  data-trigger=""  class="form-select"name="region"onChange={changeSelectOptionHandlerregion}
                  >
                   <option>Région</option>
                         {
@@ -724,7 +733,7 @@ const kebili =  [
   <div class="form-group ">
 
     <label for="exampleFormControlFile1">Logo</label>
-    <input type="file" class="form-control-file"defaultValue={clubdefault.Logo} id="exampleFormControlFile1" name="logo" onChange={(e)=>setLogo(e.target.files[0])}/>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="logo" onChange={(e)=>setLogo(e.target.files[0].FileName)}/>
   
   </div>
  
@@ -748,7 +757,7 @@ const kebili =  [
     
                 </div> 
     
-        </div >
+        </div>
       )
     }
     
